@@ -1,0 +1,21 @@
+[project]
+name = "tare"
+version = "0.1.0"
+description = "Payroll bureau back office"
+authors = [{ name = "Tare Bureau Services" }]
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi==0.115.6",
+    "pydantic==2.10.4",
+]
+
+[project.optional-dependencies]
+dev = [
+    "httpx==0.28.1",
+    "pytest==8.3.4",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_functions = ["test_*"]
