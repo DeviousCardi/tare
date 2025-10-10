@@ -42,7 +42,13 @@ def build_store() -> Store:
 
 def build_client(store: Store | None = None) -> TestClient:
     """An application over that store, ready to be called."""
-    return TestClient(create_app())
+    return TestClient(create_app(store))
+
+
+def headers(operator: Operator) -> dict[str, str]:
+    """The header the gateway would have put on the request for that operator."""
+    return {"x-bureau-operator":
+            f"{operator.id}:{operator.name}:{operator.role}:{operator.employer_id or ''}"}
 
 
 def seed_holidays(store: Store) -> None:
