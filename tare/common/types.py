@@ -32,3 +32,14 @@ class Row:
     """Base for everything the store holds."""
 
     id: str
+
+
+@dataclass
+class Employer(Row):
+    """An employer whose payroll the bureau runs."""
+
+    reference: str
+    name: str
+    opened_on: str
+    closed_on: str | None
+    pay_day: int

@@ -51,6 +51,22 @@ def headers(operator: Operator) -> dict[str, str]:
             f"{operator.id}:{operator.name}:{operator.role}:{operator.employer_id or ''}"}
 
 
+def seed_employers(store: Store) -> None:
+    """Two employers, so a test always has one the operator cannot see.
+
+    `em-1` is the one MANAGER and CLERK belong to. `em-2` exists purely so that
+    "somebody else's rows" is one line away in any test that needs it.
+    """
+    from tare.common.types import Employer
+
+    store.employers.insert(Employer(
+        id="em-1", reference="E-0001", name="Halloway Joinery",
+        opened_on="2024-01-01", closed_on=None, pay_day=28))
+    store.employers.insert(Employer(
+        id="em-2", reference="E-0002", name="Verrin Freight",
+        opened_on="2024-03-01", closed_on=None, pay_day=15))
+
+
 def seed_holidays(store: Store) -> None:
     """The Revenue's calendar, as far ahead as any test needs it."""
     table = getattr(store, "holidays", None)

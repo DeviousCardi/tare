@@ -16,8 +16,12 @@ from tare import __version__
 from tare.common.errors import DomainError
 from tare.common.store import Store
 
+from tare.modules.employers import router as employers_router
+
 #: Every area's router, in the order the README describes the service.
-ROUTERS: list = []
+ROUTERS: list = [
+    employers_router,
+]
 
 
 def create_app(store: Store | None = None) -> FastAPI:
