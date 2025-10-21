@@ -43,3 +43,16 @@ class Employer(Row):
     opened_on: str
     closed_on: str | None
     pay_day: int
+
+
+@dataclass
+class Employee(Row):
+    """Somebody an employer pays."""
+
+    employer_id: str
+    reference: str
+    name: str
+    joined_on: str
+    left_on: str | None
+    date_of_birth: str
+    levy_code: str

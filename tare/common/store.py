@@ -12,7 +12,7 @@ kind of row it is at a glance and two tables never collide.
 
 from typing import Callable, Generic, Iterable, TypeVar
 
-from tare.common.types import Employer, Row
+from tare.common.types import Employee, Employer, Row
 
 T = TypeVar("T", bound=Row)
 
@@ -86,6 +86,7 @@ class Store:
 
         # Who we run payroll for
         self.employers: Table[Employer] = Table("em")
+        self.employees: Table[Employee] = Table("ee")
 
     def reset(self) -> None:
         """Empty every table. The suite builds a fresh store instead."""

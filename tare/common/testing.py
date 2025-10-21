@@ -67,6 +67,26 @@ def seed_employers(store: Store) -> None:
         opened_on="2024-03-01", closed_on=None, pay_day=15))
 
 
+def seed_employees(store: Store) -> None:
+    """Four people across the two employers, spanning the cases that matter.
+
+    One long-serving, one who joined mid-year, one who has left, and one at the
+    other employer so a visibility test never has to build its own.
+    """
+    from tare.common.types import Employee
+
+    rows = [
+        ("ee-1", "em-1", "em-1/0001", "Nell Harrow", "2020-04-06", None, "1978-02-14", "L1"),
+        ("ee-2", "em-1", "em-1/0002", "Bram Cottle", "2025-07-01", None, "1996-11-03", "L1"),
+        ("ee-3", "em-1", "em-1/0003", "Joss Fenn", "2021-01-11", "2025-05-31", "1985-06-30", "L2"),
+        ("ee-4", "em-2", "em-2/0001", "Wren Attley", "2024-03-01", None, "1990-09-09", "L1"),
+    ]
+    for row in rows:
+        store.employees.insert(Employee(
+            id=row[0], employer_id=row[1], reference=row[2], name=row[3],
+            joined_on=row[4], left_on=row[5], date_of_birth=row[6], levy_code=row[7]))
+
+
 def seed_holidays(store: Store) -> None:
     """The Revenue's calendar, as far ahead as any test needs it."""
     table = getattr(store, "holidays", None)
