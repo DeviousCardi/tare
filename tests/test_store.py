@@ -44,6 +44,26 @@ def test_a_row_arriving_with_its_own_identifier_keeps_it():
     assert table().insert(Widget(id="wg-99", name="one")).id == "wg-99"
 
 
+def test_minting_skips_an_identifier_a_row_already_holds():
+    t = table()
+    t.insert(Widget(id="wg-1", name="loaded"))
+    assert t.insert(Widget(id="", name="minted")).id == "wg-2"
+
+
+def test_a_minted_row_never_overwrites_a_loaded_one():
+    t = table()
+    t.insert(Widget(id="wg-1", name="loaded"))
+    t.insert(Widget(id="", name="minted"))
+    assert t.find("wg-1").name == "loaded"
+
+
+def test_minting_walks_past_a_run_of_identifiers_already_taken():
+    t = table()
+    for n in (1, 2, 3):
+        t.insert(Widget(id=f"wg-{n}", name="loaded"))
+    assert t.insert(Widget(id="", name="minted")).id == "wg-4"
+
+
 def test_a_row_nobody_put_in_is_not_found():
     assert table().find("wg-9") is None
 

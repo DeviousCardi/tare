@@ -12,7 +12,7 @@ kind of row it is at a glance and two tables never collide.
 
 from typing import Callable, Generic, Iterable, TypeVar
 
-from tare.common.types import Employee, Employer, Row
+from tare.common.types import Contract, Employee, Employer, Row
 
 T = TypeVar("T", bound=Row)
 
@@ -26,8 +26,16 @@ class Table(Generic[T]):
         self._minted = 0
 
     def mint(self) -> str:
-        """The next identifier this table hands out."""
+        """The next identifier this table hands out.
+
+        Skips anything already taken. Rows arrive both ways — minted here, or
+        carrying an identifier a warehouse load already gave them — and a mint
+        that ignored the second kind would hand out an identifier a row already
+        holds and quietly overwrite it.
+        """
         self._minted += 1
+        while f"{self.prefix}-{self._minted}" in self._rows:
+            self._minted += 1
         return f"{self.prefix}-{self._minted}"
 
     def insert(self, row: T) -> T:
@@ -87,6 +95,7 @@ class Store:
         # Who we run payroll for
         self.employers: Table[Employer] = Table("em")
         self.employees: Table[Employee] = Table("ee")
+        self.contracts: Table[Contract] = Table("ct")
 
     def reset(self) -> None:
         """Empty every table. The suite builds a fresh store instead."""
