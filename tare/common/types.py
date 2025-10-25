@@ -56,3 +56,16 @@ class Employee(Row):
     left_on: str | None
     date_of_birth: str
     levy_code: str
+
+
+@dataclass
+class Contract(Row):
+    """The terms one person is employed on. A person may hold several in turn."""
+
+    employee_id: str
+    employer_id: str
+    started_on: str
+    ended_on: str | None
+    hours_per_week: int
+    annual_salary: int
+    notice_weeks: int

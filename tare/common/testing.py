@@ -87,6 +87,23 @@ def seed_employees(store: Store) -> None:
             joined_on=row[4], left_on=row[5], date_of_birth=row[6], levy_code=row[7]))
 
 
+def seed_contracts(store: Store) -> None:
+    """One contract each for the people `seed_employees` puts on the payroll."""
+    from tare.common.types import Contract
+
+    rows = [
+        ("ct-1", "ee-1", "em-1", "2020-04-06", None, 37, 3120000, 8),
+        ("ct-2", "ee-2", "em-1", "2025-07-01", None, 20, 1560000, 4),
+        ("ct-3", "ee-3", "em-1", "2021-01-11", "2025-05-31", 37, 2600000, 4),
+        ("ct-4", "ee-4", "em-2", "2024-03-01", None, 37, 4160000, 12),
+    ]
+    for row in rows:
+        store.contracts.insert(Contract(
+            id=row[0], employee_id=row[1], employer_id=row[2], started_on=row[3],
+            ended_on=row[4], hours_per_week=row[5], annual_salary=row[6],
+            notice_weeks=row[7]))
+
+
 def seed_holidays(store: Store) -> None:
     """The Revenue's calendar, as far ahead as any test needs it."""
     table = getattr(store, "holidays", None)
