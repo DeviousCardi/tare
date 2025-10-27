@@ -106,19 +106,7 @@ def seed_contracts(store: Store) -> None:
 
 def seed_holidays(store: Store) -> None:
     """The Revenue's calendar, as far ahead as any test needs it."""
-    table = getattr(store, "holidays", None)
-    if table is None:
-        return
+    from tare.common.types import Holiday
+
     for day in HOLIDAY_DATES:
-        table.insert(_holiday(day))
-
-
-def _holiday(day: str):
-    from tare.common.types import Row
-    from dataclasses import dataclass
-
-    @dataclass
-    class _Row(Row):
-        holiday_on: str
-
-    return _Row(id="", holiday_on=day)
+        store.holidays.insert(Holiday(id="", holiday_on=day, name="Bank holiday"))

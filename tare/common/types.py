@@ -69,3 +69,27 @@ class Contract(Row):
     hours_per_week: int
     annual_salary: int
     notice_weeks: int
+
+
+@dataclass
+class Holiday(Row):
+    """A day the Revenue's calendar holds, so it is not a working day."""
+
+    holiday_on: str
+    name: str
+
+
+@dataclass
+class LevyCode(Row):
+    """A levy code, and the free pay a year of it carries.
+
+    `basis` says how the free pay is spent. A cumulative code carries the whole
+    year's allowance forward, so an unused part of it is still there next
+    period. A period code spends one period's worth and forgets the rest.
+    """
+
+    code: str
+    description: str
+    annual_allowance: int
+    basis: str
+    effective_from: str

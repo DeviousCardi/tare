@@ -18,6 +18,7 @@ from tare.common.store import Store
 
 from tare.modules.contracts import router as contracts_router
 from tare.modules.employees import router as employees_router
+from tare.modules.holidays import router as holidays_router
 from tare.modules.employers import router as employers_router
 
 #: Every area's router, in the order the README describes the service.
@@ -25,6 +26,7 @@ ROUTERS: list = [
     employers_router,
     employees_router,
     contracts_router,
+    holidays_router,
 ]
 
 
