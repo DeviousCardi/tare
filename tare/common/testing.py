@@ -104,6 +104,25 @@ def seed_contracts(store: Store) -> None:
             notice_weeks=row[7]))
 
 
+def seed_levy_codes(store: Store) -> None:
+    """Two codes, one of each basis, and one of them changed for the new year.
+
+    L1 is the ordinary cumulative code and it goes up on 2025-04-06, which is
+    what gives every test a change to read either side of.
+    """
+    from tare.common.types import LevyCode
+
+    rows = [
+        ("lc-1", "L1", "Ordinary allowance", 1257000, "cumulative", "2024-04-06"),
+        ("lc-2", "L1", "Ordinary allowance", 1296000, "cumulative", "2025-04-06"),
+        ("lc-3", "L2", "Second job, no allowance", 0, "period", "2024-04-06"),
+    ]
+    for row in rows:
+        store.levy_codes.insert(LevyCode(
+            id=row[0], code=row[1], description=row[2], annual_allowance=row[3],
+            basis=row[4], effective_from=row[5]))
+
+
 def seed_holidays(store: Store) -> None:
     """The Revenue's calendar, as far ahead as any test needs it."""
     from tare.common.types import Holiday
