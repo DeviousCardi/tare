@@ -19,6 +19,7 @@ from tare.common.store import Store
 from tare.modules.contracts import router as contracts_router
 from tare.modules.employees import router as employees_router
 from tare.modules.holidays import router as holidays_router
+from tare.modules.bands import router as bands_router
 from tare.modules.levycodes import router as levycodes_router
 from tare.modules.employers import router as employers_router
 
@@ -29,6 +30,7 @@ ROUTERS: list = [
     contracts_router,
     holidays_router,
     levycodes_router,
+    bands_router,
 ]
 
 

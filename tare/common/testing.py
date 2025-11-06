@@ -123,6 +123,28 @@ def seed_levy_codes(store: Store) -> None:
             basis=row[4], effective_from=row[5]))
 
 
+def seed_bands(store: Store) -> None:
+    """Letter A, published once and raised for 2025-04-06.
+
+    Three floors: nothing under the first, the main rate through the middle,
+    and a lower rate on everything above the middle band's ceiling.
+    """
+    from tare.common.types import Band
+
+    rows = [
+        ("bd-1", "A", 0, 104000, 0, "2024-04-06"),
+        ("bd-2", "A", 104001, 418000, 800, "2024-04-06"),
+        ("bd-3", "A", 418001, None, 200, "2024-04-06"),
+        ("bd-4", "A", 0, 108000, 0, "2025-04-06"),
+        ("bd-5", "A", 108001, 425000, 800, "2025-04-06"),
+        ("bd-6", "A", 425001, None, 200, "2025-04-06"),
+    ]
+    for row in rows:
+        store.bands.insert(Band(
+            id=row[0], letter=row[1], from_pay=row[2], to_pay=row[3],
+            rate_basis_points=row[4], effective_from=row[5]))
+
+
 def seed_holidays(store: Store) -> None:
     """The Revenue's calendar, as far ahead as any test needs it."""
     from tare.common.types import Holiday

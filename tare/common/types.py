@@ -93,3 +93,18 @@ class LevyCode(Row):
     annual_allowance: int
     basis: str
     effective_from: str
+
+
+@dataclass
+class Band(Row):
+    """One slice of pay a contribution rate applies to.
+
+    Both bounds count. `to_pay` of `None` is the top band, which runs on
+    without a ceiling.
+    """
+
+    letter: str
+    from_pay: int
+    to_pay: int | None
+    rate_basis_points: int
+    effective_from: str
