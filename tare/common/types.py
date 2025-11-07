@@ -108,3 +108,18 @@ class Band(Row):
     to_pay: int | None
     rate_basis_points: int
     effective_from: str
+
+
+@dataclass
+class Threshold(Row):
+    """A figure at which something starts, or stops.
+
+    `kind` says what it governs, `frequency` which payroll it is quoted for,
+    since the Revenue publishes the same threshold weekly and monthly rather
+    than expecting anyone to divide it.
+    """
+
+    kind: str
+    frequency: str
+    amount: int
+    effective_from: str

@@ -12,7 +12,7 @@ kind of row it is at a glance and two tables never collide.
 
 from typing import Callable, Generic, Iterable, TypeVar
 
-from tare.common.types import Band, Contract, Employee, Employer, Holiday, LevyCode, Row
+from tare.common.types import Band, Contract, Employee, Employer, Holiday, LevyCode, Row, Threshold
 
 T = TypeVar("T", bound=Row)
 
@@ -101,6 +101,7 @@ class Store:
         self.holidays: Table[Holiday] = Table("hd")
         self.levy_codes: Table[LevyCode] = Table("lc")
         self.bands: Table[Band] = Table("bd")
+        self.thresholds: Table[Threshold] = Table("th")
 
     def reset(self) -> None:
         """Empty every table. The suite builds a fresh store instead."""

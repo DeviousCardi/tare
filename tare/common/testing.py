@@ -145,6 +145,25 @@ def seed_bands(store: Store) -> None:
             rate_basis_points=row[4], effective_from=row[5]))
 
 
+def seed_thresholds(store: Store) -> None:
+    """The three thresholds, monthly and weekly, raised for 2025-04-06."""
+    from tare.common.types import Threshold
+
+    rows = [
+        ("th-1", "contributions_start", "monthly", 104000, "2024-04-06"),
+        ("th-2", "contributions_start", "weekly", 24200, "2024-04-06"),
+        ("th-3", "higher_levy_starts", "monthly", 418000, "2024-04-06"),
+        ("th-4", "lower_earnings", "monthly", 52300, "2024-04-06"),
+        ("th-5", "contributions_start", "monthly", 108000, "2025-04-06"),
+        ("th-6", "contributions_start", "weekly", 25100, "2025-04-06"),
+        ("th-7", "higher_levy_starts", "monthly", 425000, "2025-04-06"),
+    ]
+    for row in rows:
+        store.thresholds.insert(Threshold(
+            id=row[0], kind=row[1], frequency=row[2], amount=row[3],
+            effective_from=row[4]))
+
+
 def seed_holidays(store: Store) -> None:
     """The Revenue's calendar, as far ahead as any test needs it."""
     from tare.common.types import Holiday
