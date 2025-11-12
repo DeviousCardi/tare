@@ -164,6 +164,21 @@ def seed_thresholds(store: Store) -> None:
             effective_from=row[4]))
 
 
+def seed_reliefs(store: Store) -> None:
+    """One flat relief and one share, with the flat one raised for 2025-04-06."""
+    from tare.common.types import Relief
+
+    rows = [
+        ("rl-1", "TOOLS", "Tools and upkeep", "flat", 12000, "2024-04-06"),
+        ("rl-2", "TOOLS", "Tools and upkeep", "flat", 14000, "2025-04-06"),
+        ("rl-3", "UNION", "Union subscription", "share", 150, "2024-04-06"),
+    ]
+    for row in rows:
+        store.reliefs.insert(Relief(
+            id=row[0], code=row[1], description=row[2], basis=row[3],
+            amount=row[4], effective_from=row[5]))
+
+
 def seed_holidays(store: Store) -> None:
     """The Revenue's calendar, as far ahead as any test needs it."""
     from tare.common.types import Holiday

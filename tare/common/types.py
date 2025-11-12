@@ -123,3 +123,29 @@ class Threshold(Row):
     frequency: str
     amount: int
     effective_from: str
+
+
+@dataclass
+class Relief(Row):
+    """An amount that comes off pay before the levy is worked out.
+
+    `basis` says how it is quoted: a flat amount per period, or a share of pay
+    in basis points.
+    """
+
+    code: str
+    description: str
+    basis: str
+    amount: int
+    effective_from: str
+
+
+@dataclass
+class Exemption(Row):
+    """A reason one person is not charged something everybody else is."""
+
+    employee_id: str
+    kind: str
+    reason: str
+    starts_on: str
+    ends_on: str | None
