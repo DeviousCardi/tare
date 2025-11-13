@@ -1,5 +1,7 @@
 """The Revenue's calendar. Everybody reads it; only the bureau publishes to it."""
 
+from __future__ import annotations
+
 from tare.common.dates import is_working_day
 from tare.common.errors import conflict, not_found
 from tare.common.operator import assert_bureau

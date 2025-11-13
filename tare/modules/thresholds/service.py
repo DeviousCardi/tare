@@ -1,5 +1,7 @@
 """Thresholds. Everybody reads them; only the bureau publishes one."""
 
+from __future__ import annotations
+
 from tare.common.effective import all_in_force_on, sort_by_effective
 from tare.common.errors import conflict, not_found, refuse
 from tare.common.operator import assert_bureau

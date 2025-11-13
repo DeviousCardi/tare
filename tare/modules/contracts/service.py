@@ -1,5 +1,7 @@
 """The terms people are employed on, and how they change."""
 
+from __future__ import annotations
+
 from tare.common.dates import add_days, compare_dates
 from tare.common.errors import conflict, not_found, refuse
 from tare.common.operator import visible_to

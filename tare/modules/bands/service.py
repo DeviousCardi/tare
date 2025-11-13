@@ -1,5 +1,7 @@
 """Contribution bands. Everybody reads them; only the bureau publishes."""
 
+from __future__ import annotations
+
 from tare.common.effective import sort_by_effective
 from tare.common.errors import conflict, not_found, refuse
 from tare.common.operator import assert_bureau
@@ -29,9 +31,7 @@ class BandsService:
             raise not_found("band", band_id)
         return row
 
-    # Quoted because this class defines its own `list`, which shadows the
-    # builtin for every annotation evaluated in the class body below it.
-    def in_force(self, letter: str, day: str) -> "list[Band]":
+    def in_force(self, letter: str, day: str) -> list[Band]:
         found = bands_for(self.store.bands.all(), letter, a_day(day, "day"))
         if not found:
             raise not_found("bands in force", f"{letter} on {day}")

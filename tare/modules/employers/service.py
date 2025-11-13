@@ -1,5 +1,7 @@
 """Employers, and the visibility check the whole service leans on."""
 
+from __future__ import annotations
+
 from tare.common.dates import compare_dates
 from tare.common.errors import conflict, not_found, refuse
 from tare.common.operator import assert_bureau, assert_sees, visible_to
