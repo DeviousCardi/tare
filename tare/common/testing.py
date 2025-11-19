@@ -179,6 +179,21 @@ def seed_reliefs(store: Store) -> None:
             amount=row[4], effective_from=row[5]))
 
 
+def seed_exemptions(store: Store) -> None:
+    """One standing exemption, one that has ended, one at the other employer."""
+    from tare.common.types import Exemption
+
+    rows = [
+        ("ex-1", "ee-1", "contributions", "Over pension age", "2025-01-01", None),
+        ("ex-2", "ee-2", "loan", "Plan settled in full", "2025-07-01", "2025-08-31"),
+        ("ex-3", "ee-4", "levy", "Seconded abroad", "2025-02-01", None),
+    ]
+    for row in rows:
+        store.exemptions.insert(Exemption(
+            id=row[0], employee_id=row[1], kind=row[2], reason=row[3],
+            starts_on=row[4], ends_on=row[5]))
+
+
 def seed_holidays(store: Store) -> None:
     """The Revenue's calendar, as far ahead as any test needs it."""
     from tare.common.types import Holiday
