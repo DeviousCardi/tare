@@ -194,6 +194,21 @@ def seed_exemptions(store: Store) -> None:
             starts_on=row[4], ends_on=row[5]))
 
 
+def seed_departments(store: Store) -> None:
+    """A two-level tree at em-1, and one department at em-2."""
+    from tare.common.types import Department
+
+    rows = [
+        ("dp-1", "em-1", "OPS", "Operations", None),
+        ("dp-2", "em-1", "OPS-JOI", "Joinery", "dp-1"),
+        ("dp-3", "em-1", "ADM", "Administration", None),
+        ("dp-4", "em-2", "HAU", "Haulage", None),
+    ]
+    for row in rows:
+        store.departments.insert(Department(
+            id=row[0], employer_id=row[1], code=row[2], name=row[3], parent_id=row[4]))
+
+
 def seed_holidays(store: Store) -> None:
     """The Revenue's calendar, as far ahead as any test needs it."""
     from tare.common.types import Holiday

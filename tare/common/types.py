@@ -149,3 +149,37 @@ class Exemption(Row):
     reason: str
     starts_on: str
     ends_on: str | None
+
+
+@dataclass
+class Department(Row):
+    """A part of an employer's organisation, for reporting and for cost."""
+
+    employer_id: str
+    code: str
+    name: str
+    parent_id: str | None
+
+
+@dataclass
+class CostCentre(Row):
+    """Where a cost is booked when the payroll is posted to the ledger."""
+
+    employer_id: str
+    code: str
+    name: str
+    department_id: str | None
+    closed: bool
+
+
+@dataclass
+class Position(Row):
+    """A post somebody holds, and where its cost belongs."""
+
+    employee_id: str
+    employer_id: str
+    department_id: str
+    cost_centre_id: str
+    title: str
+    held_from: str
+    held_to: str | None
