@@ -17,6 +17,7 @@ from tare.common.errors import DomainError
 from tare.common.store import Store
 
 from tare.modules.contracts import router as contracts_router
+from tare.modules.costcentres import router as costcentres_router
 from tare.modules.departments import router as departments_router
 from tare.modules.employees import router as employees_router
 from tare.modules.holidays import router as holidays_router
@@ -33,6 +34,7 @@ ROUTERS: list = [
     employees_router,
     contracts_router,
     departments_router,
+    costcentres_router,
     holidays_router,
     levycodes_router,
     bands_router,

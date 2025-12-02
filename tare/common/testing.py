@@ -209,6 +209,22 @@ def seed_departments(store: Store) -> None:
             id=row[0], employer_id=row[1], code=row[2], name=row[3], parent_id=row[4]))
 
 
+def seed_cost_centres(store: Store) -> None:
+    """Three at em-1, one of them closed, and one at em-2."""
+    from tare.common.types import CostCentre
+
+    rows = [
+        ("cc-1", "em-1", "OPS01", "Workshop", "dp-2", False),
+        ("cc-2", "em-1", "OPS02", "Yard", "dp-1", False),
+        ("cc-3", "em-1", "ADM01", "Office", "dp-3", True),
+        ("cc-4", "em-2", "HAU01", "Depot", "dp-4", False),
+    ]
+    for row in rows:
+        store.cost_centres.insert(CostCentre(
+            id=row[0], employer_id=row[1], code=row[2], name=row[3],
+            department_id=row[4], closed=row[5]))
+
+
 def seed_holidays(store: Store) -> None:
     """The Revenue's calendar, as far ahead as any test needs it."""
     from tare.common.types import Holiday
