@@ -225,6 +225,22 @@ def seed_cost_centres(store: Store) -> None:
             department_id=row[4], closed=row[5]))
 
 
+def seed_positions(store: Store) -> None:
+    """A post each for the people who are still in post, and one that ended."""
+    from tare.common.types import Position
+
+    rows = [
+        ("ps-1", "ee-1", "em-1", "dp-2", "cc-1", "Bench joiner", "2020-04-06", None),
+        ("ps-2", "ee-2", "em-1", "dp-1", "cc-2", "Yard hand", "2025-07-01", None),
+        ("ps-3", "ee-3", "em-1", "dp-3", "cc-2", "Clerk", "2021-01-11", "2025-05-31"),
+        ("ps-4", "ee-4", "em-2", "dp-4", "cc-4", "Driver", "2024-03-01", None),
+    ]
+    for row in rows:
+        store.positions.insert(Position(
+            id=row[0], employee_id=row[1], employer_id=row[2], department_id=row[3],
+            cost_centre_id=row[4], title=row[5], held_from=row[6], held_to=row[7]))
+
+
 def seed_holidays(store: Store) -> None:
     """The Revenue's calendar, as far ahead as any test needs it."""
     from tare.common.types import Holiday
