@@ -241,6 +241,21 @@ def seed_positions(store: Store) -> None:
             cost_centre_id=row[4], title=row[5], held_from=row[6], held_to=row[7]))
 
 
+def seed_calendars(store: Store) -> None:
+    """A monthly calendar at em-1 and a weekly one, both from 2025-04-06."""
+    from tare.common.types import PayCalendar
+
+    rows = [
+        ("pc-1", "em-1", "monthly", "2025-04-06", 12),
+        ("pc-2", "em-1", "weekly", "2025-04-06", 52),
+        ("pc-3", "em-2", "monthly", "2025-04-06", 12),
+    ]
+    for row in rows:
+        store.calendars.insert(PayCalendar(
+            id=row[0], employer_id=row[1], frequency=row[2],
+            year_starts_on=row[3], periods=row[4]))
+
+
 def seed_holidays(store: Store) -> None:
     """The Revenue's calendar, as far ahead as any test needs it."""
     from tare.common.types import Holiday

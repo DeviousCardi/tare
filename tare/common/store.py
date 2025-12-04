@@ -12,7 +12,7 @@ kind of row it is at a glance and two tables never collide.
 
 from typing import Callable, Generic, Iterable, TypeVar
 
-from tare.common.types import Band, Contract, Employer, CostCentre, Department, Employee, Exemption, Holiday, LevyCode, Position, Relief, Row, Threshold
+from tare.common.types import Band, Contract, Employer, CostCentre, Department, PayCalendar, Employee, Exemption, Holiday, LevyCode, Position, Relief, Row, Threshold
 
 T = TypeVar("T", bound=Row)
 
@@ -99,6 +99,7 @@ class Store:
         self.departments: Table[Department] = Table("dp")
         self.cost_centres: Table[CostCentre] = Table("cc")
         self.positions: Table[Position] = Table("ps")
+        self.calendars: Table[PayCalendar] = Table("pc")
 
         # What the Revenue publishes
         self.holidays: Table[Holiday] = Table("hd")

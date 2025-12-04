@@ -183,3 +183,18 @@ class Position(Row):
     title: str
     held_from: str
     held_to: str | None
+
+
+@dataclass
+class PayCalendar(Row):
+    """When an employer's pay periods start and how many there are in a year.
+
+    A calendar runs from `year_starts_on` for `periods` periods. Weekly and
+    fortnightly periods are runs of days; monthly ones follow the calendar
+    months from the day the year starts.
+    """
+
+    employer_id: str
+    frequency: str
+    year_starts_on: str
+    periods: int
