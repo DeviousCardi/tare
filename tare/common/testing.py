@@ -256,6 +256,23 @@ def seed_calendars(store: Store) -> None:
             year_starts_on=row[3], periods=row[4]))
 
 
+def seed_elements(store: Store) -> None:
+    """The elements a payslip is built from, at both employers."""
+    from tare.common.types import PayElement
+
+    rows = [
+        ("el-1", "em-1", "BASIC", "Basic pay", "payment", True, True, True),
+        ("el-2", "em-1", "OT", "Overtime", "payment", True, True, False),
+        ("el-3", "em-1", "EXP", "Expenses", "payment", False, False, False),
+        ("el-4", "em-1", "UNION", "Union subscription", "deduction", False, False, False),
+        ("el-5", "em-2", "BASIC", "Basic pay", "payment", True, True, True),
+    ]
+    for row in rows:
+        store.elements.insert(PayElement(
+            id=row[0], employer_id=row[1], code=row[2], name=row[3], kind=row[4],
+            taxable=row[5], contributory=row[6], pensionable=row[7]))
+
+
 def seed_holidays(store: Store) -> None:
     """The Revenue's calendar, as far ahead as any test needs it."""
     from tare.common.types import Holiday

@@ -198,3 +198,21 @@ class PayCalendar(Row):
     frequency: str
     year_starts_on: str
     periods: int
+
+
+@dataclass
+class PayElement(Row):
+    """One named thing that can appear on a payslip.
+
+    The three flags say what a figure of this element counts towards: the levy,
+    the contributions, and the pensionable figure. They are separate because a
+    thing can count towards one and not another.
+    """
+
+    employer_id: str
+    code: str
+    name: str
+    kind: str
+    taxable: bool
+    contributory: bool
+    pensionable: bool
