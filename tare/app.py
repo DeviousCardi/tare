@@ -28,6 +28,7 @@ from tare.modules.levycodes import router as levycodes_router
 from tare.modules.exemptions import router as exemptions_router
 from tare.modules.positions import router as positions_router
 from tare.modules.reliefs import router as reliefs_router
+from tare.modules.scales import router as scales_router
 from tare.modules.thresholds import router as thresholds_router
 from tare.modules.employers import router as employers_router
 
@@ -41,6 +42,7 @@ ROUTERS: list = [
     positions_router,
     calendars_router,
     elements_router,
+    scales_router,
     holidays_router,
     levycodes_router,
     bands_router,

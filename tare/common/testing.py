@@ -273,6 +273,26 @@ def seed_elements(store: Store) -> None:
             taxable=row[5], contributory=row[6], pensionable=row[7]))
 
 
+def seed_scale_points(store: Store) -> None:
+    """A four-point scale, republished at a higher figure for 2025-04-06."""
+    from tare.common.types import ScalePoint
+
+    rows = [
+        ("sp-1", "CRAFT", 1, 2190000, "2024-04-06"),
+        ("sp-2", "CRAFT", 2, 2372500, "2024-04-06"),
+        ("sp-3", "CRAFT", 3, 2555000, "2024-04-06"),
+        ("sp-4", "CRAFT", 4, 2737500, "2024-04-06"),
+        ("sp-5", "CRAFT", 1, 2263500, "2025-04-06"),
+        ("sp-6", "CRAFT", 2, 2445000, "2025-04-06"),
+        ("sp-7", "CRAFT", 3, 2628500, "2025-04-06"),
+        ("sp-8", "CRAFT", 4, 2810000, "2025-04-06"),
+    ]
+    for row in rows:
+        store.scale_points.insert(ScalePoint(
+            id=row[0], scale_code=row[1], point=row[2], annual_salary=row[3],
+            effective_from=row[4]))
+
+
 def seed_holidays(store: Store) -> None:
     """The Revenue's calendar, as far ahead as any test needs it."""
     from tare.common.types import Holiday

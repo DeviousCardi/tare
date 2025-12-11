@@ -216,3 +216,13 @@ class PayElement(Row):
     taxable: bool
     contributory: bool
     pensionable: bool
+
+
+@dataclass
+class ScalePoint(Row):
+    """One point on a pay scale, and what a year of it is worth."""
+
+    scale_code: str
+    point: int
+    annual_salary: int
+    effective_from: str
