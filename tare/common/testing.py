@@ -293,6 +293,21 @@ def seed_scale_points(store: Store) -> None:
             effective_from=row[4]))
 
 
+def seed_grades(store: Store) -> None:
+    """Two grades on the craft scale at em-1, and one at em-2."""
+    from tare.common.types import Grade
+
+    rows = [
+        ("gr-1", "em-1", "C1", "Craft entry", "CRAFT", 1, 3),
+        ("gr-2", "em-1", "C2", "Craft senior", "CRAFT", 3, 5),
+        ("gr-3", "em-2", "D1", "Driver", "CRAFT", 2, 4),
+    ]
+    for row in rows:
+        store.grades.insert(Grade(
+            id=row[0], employer_id=row[1], code=row[2], name=row[3],
+            scale_code=row[4], lowest_point=row[5], highest_point=row[6]))
+
+
 def seed_holidays(store: Store) -> None:
     """The Revenue's calendar, as far ahead as any test needs it."""
     from tare.common.types import Holiday

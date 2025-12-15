@@ -226,3 +226,15 @@ class ScalePoint(Row):
     point: int
     annual_salary: int
     effective_from: str
+
+
+@dataclass
+class Grade(Row):
+    """A grade an employer uses, and the run of scale points it covers."""
+
+    employer_id: str
+    code: str
+    name: str
+    scale_code: str
+    lowest_point: int
+    highest_point: int
