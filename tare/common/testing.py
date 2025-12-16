@@ -308,6 +308,25 @@ def seed_grades(store: Store) -> None:
             scale_code=row[4], lowest_point=row[5], highest_point=row[6]))
 
 
+def seed_patterns(store: Store) -> None:
+    """A full week, a part week, and one at the other employer.
+
+    Every seeded pattern is worked Monday to Friday; the weekend figures are
+    nil, which is what a bureau sees on nearly every contract it runs.
+    """
+    from tare.common.types import WorkingPattern
+
+    rows = [
+        ("wp-1", "ee-1", "em-1", "2020-04-06", None, [8, 8, 8, 8, 5, 0, 0]),
+        ("wp-2", "ee-2", "em-1", "2025-07-01", None, [4, 4, 4, 4, 4, 0, 0]),
+        ("wp-3", "ee-4", "em-2", "2024-03-01", None, [8, 8, 8, 8, 5, 0, 0]),
+    ]
+    for row in rows:
+        store.patterns.insert(WorkingPattern(
+            id=row[0], employee_id=row[1], employer_id=row[2], starts_on=row[3],
+            ends_on=row[4], hours=list(row[5])))
+
+
 def seed_holidays(store: Store) -> None:
     """The Revenue's calendar, as far ahead as any test needs it."""
     from tare.common.types import Holiday

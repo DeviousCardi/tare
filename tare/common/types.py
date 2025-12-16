@@ -238,3 +238,18 @@ class Grade(Row):
     scale_code: str
     lowest_point: int
     highest_point: int
+
+
+@dataclass
+class WorkingPattern(Row):
+    """The hours somebody is expected to work, day by day.
+
+    `hours` runs Monday to Sunday and is held in whole hours. A pattern stands
+    from `starts_on` until another replaces it.
+    """
+
+    employee_id: str
+    employer_id: str
+    starts_on: str
+    ends_on: str | None
+    hours: list[int]
