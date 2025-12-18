@@ -253,3 +253,15 @@ class WorkingPattern(Row):
     starts_on: str
     ends_on: str | None
     hours: list[int]
+
+
+@dataclass
+class TimesheetLine(Row):
+    """Hours somebody put in on one day, and what they are to be paid as."""
+
+    employee_id: str
+    employer_id: str
+    worked_on: str
+    hours: int
+    element_id: str
+    approved: bool

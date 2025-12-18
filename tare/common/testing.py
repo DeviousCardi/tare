@@ -327,6 +327,24 @@ def seed_patterns(store: Store) -> None:
             ends_on=row[4], hours=list(row[5])))
 
 
+def seed_timesheets(store: Store) -> None:
+    """A working week for ee-1, one line still waiting on approval."""
+    from tare.common.types import TimesheetLine
+
+    rows = [
+        ("ts-1", "ee-1", "em-1", "2025-06-02", 8, "el-1", True),
+        ("ts-2", "ee-1", "em-1", "2025-06-03", 8, "el-1", True),
+        ("ts-3", "ee-1", "em-1", "2025-06-04", 8, "el-1", True),
+        ("ts-4", "ee-1", "em-1", "2025-06-05", 3, "el-2", True),
+        ("ts-5", "ee-1", "em-1", "2025-06-06", 5, "el-1", False),
+        ("ts-6", "ee-4", "em-2", "2025-06-02", 8, "el-5", True),
+    ]
+    for row in rows:
+        store.timesheets.insert(TimesheetLine(
+            id=row[0], employee_id=row[1], employer_id=row[2], worked_on=row[3],
+            hours=row[4], element_id=row[5], approved=row[6]))
+
+
 def seed_holidays(store: Store) -> None:
     """The Revenue's calendar, as far ahead as any test needs it."""
     from tare.common.types import Holiday

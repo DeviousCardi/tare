@@ -32,6 +32,7 @@ from tare.modules.positions import router as positions_router
 from tare.modules.reliefs import router as reliefs_router
 from tare.modules.scales import router as scales_router
 from tare.modules.thresholds import router as thresholds_router
+from tare.modules.timesheets import router as timesheets_router
 from tare.modules.employers import router as employers_router
 
 #: Every area's router, in the order the README describes the service.
@@ -47,6 +48,7 @@ ROUTERS: list = [
     scales_router,
     grades_router,
     patterns_router,
+    timesheets_router,
     holidays_router,
     levycodes_router,
     bands_router,
