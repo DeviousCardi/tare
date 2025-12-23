@@ -148,7 +148,15 @@ def test_hours_cannot_be_recorded_against_a_deduction():
 
 
 def test_hours_cannot_be_paid_as_another_employers_element():
+    # The bureau can see both employers, so the refusal that fires is the one
+    # about the element belonging elsewhere rather than a visibility check.
     with pytest.raises(Refused, match="person's own employer"):
+        service().record(BUREAU, RecordHours(
+            employee_id="ee-1", worked_on="2025-06-09", hours=8, element_id="el-5"))
+
+
+def test_a_manager_reaching_for_another_employers_element_is_refused_on_sight():
+    with pytest.raises(Refused, match="cannot see employer em-2"):
         service().record(MANAGER, RecordHours(
             employee_id="ee-1", worked_on="2025-06-09", hours=8, element_id="el-5"))
 
