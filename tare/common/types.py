@@ -265,3 +265,15 @@ class TimesheetLine(Row):
     hours: int
     element_id: str
     approved: bool
+
+
+@dataclass
+class Absence(Row):
+    """A run of days somebody was away, and what kind of absence it was."""
+
+    employee_id: str
+    employer_id: str
+    kind: str
+    starts_on: str
+    ends_on: str
+    notified_on: str

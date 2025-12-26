@@ -345,6 +345,23 @@ def seed_timesheets(store: Store) -> None:
             hours=row[4], element_id=row[5], approved=row[6]))
 
 
+def seed_absences(store: Store) -> None:
+    """Two spells of sickness far apart, one close pair, and one parental run."""
+    from tare.common.types import Absence
+
+    rows = [
+        ("ab-1", "ee-1", "em-1", "sick", "2025-01-06", "2025-01-10", "2025-01-06"),
+        ("ab-2", "ee-1", "em-1", "sick", "2025-01-20", "2025-01-24", "2025-01-20"),
+        ("ab-3", "ee-1", "em-1", "sick", "2025-09-01", "2025-09-05", "2025-09-01"),
+        ("ab-4", "ee-2", "em-1", "parental", "2025-08-04", "2025-08-29", "2025-07-01"),
+        ("ab-5", "ee-4", "em-2", "sick", "2025-03-03", "2025-03-07", "2025-03-03"),
+    ]
+    for row in rows:
+        store.absences.insert(Absence(
+            id=row[0], employee_id=row[1], employer_id=row[2], kind=row[3],
+            starts_on=row[4], ends_on=row[5], notified_on=row[6]))
+
+
 def seed_holidays(store: Store) -> None:
     """The Revenue's calendar, as far ahead as any test needs it."""
     from tare.common.types import Holiday
