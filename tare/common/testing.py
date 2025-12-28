@@ -362,6 +362,22 @@ def seed_absences(store: Store) -> None:
             starts_on=row[4], ends_on=row[5], notified_on=row[6]))
 
 
+def seed_leave(store: Store) -> None:
+    """Two granted runs inside one working week each, one still waiting."""
+    from tare.common.types import LeaveRequest
+
+    rows = [
+        ("lv-1", "ee-1", "em-1", "2025-06-02", "2025-06-06", "2025-05-01", "granted"),
+        ("lv-2", "ee-1", "em-1", "2025-07-07", "2025-07-11", "2025-06-01", "granted"),
+        ("lv-3", "ee-1", "em-1", "2025-10-06", "2025-10-10", "2025-09-01", "asked"),
+        ("lv-4", "ee-4", "em-2", "2025-06-02", "2025-06-06", "2025-05-01", "granted"),
+    ]
+    for row in rows:
+        store.leave.insert(LeaveRequest(
+            id=row[0], employee_id=row[1], employer_id=row[2], starts_on=row[3],
+            ends_on=row[4], asked_on=row[5], status=row[6]))
+
+
 def seed_holidays(store: Store) -> None:
     """The Revenue's calendar, as far ahead as any test needs it."""
     from tare.common.types import Holiday

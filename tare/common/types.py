@@ -277,3 +277,15 @@ class Absence(Row):
     starts_on: str
     ends_on: str
     notified_on: str
+
+
+@dataclass
+class LeaveRequest(Row):
+    """A run of days somebody asked to take off, and what became of it."""
+
+    employee_id: str
+    employer_id: str
+    starts_on: str
+    ends_on: str
+    asked_on: str
+    status: str
