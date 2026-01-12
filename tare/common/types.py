@@ -289,3 +289,18 @@ class LeaveRequest(Row):
     ends_on: str
     asked_on: str
     status: str
+
+
+@dataclass
+class Entitlement(Row):
+    """How many days of leave somebody has for one leave year.
+
+    `days` is what a whole year of the contract carries. `carried_in` is what
+    came over from the year before.
+    """
+
+    employee_id: str
+    employer_id: str
+    year_starts_on: str
+    days: int
+    carried_in: int

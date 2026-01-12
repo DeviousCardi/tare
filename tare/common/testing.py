@@ -378,6 +378,21 @@ def seed_leave(store: Store) -> None:
             ends_on=row[4], asked_on=row[5], status=row[6]))
 
 
+def seed_entitlements(store: Store) -> None:
+    """A leave year each for the people employed across the whole of it."""
+    from tare.common.types import Entitlement
+
+    rows = [
+        ("en-1", "ee-1", "em-1", "2025-01-01", 25, 3),
+        ("en-2", "ee-1", "em-1", "2024-01-01", 25, 0),
+        ("en-3", "ee-4", "em-2", "2025-01-01", 28, 0),
+    ]
+    for row in rows:
+        store.entitlements.insert(Entitlement(
+            id=row[0], employee_id=row[1], employer_id=row[2],
+            year_starts_on=row[3], days=row[4], carried_in=row[5]))
+
+
 def seed_holidays(store: Store) -> None:
     """The Revenue's calendar, as far ahead as any test needs it."""
     from tare.common.types import Holiday
