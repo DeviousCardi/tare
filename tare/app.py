@@ -34,6 +34,7 @@ from tare.modules.patterns import router as patterns_router
 from tare.modules.positions import router as positions_router
 from tare.modules.reliefs import router as reliefs_router
 from tare.modules.scales import router as scales_router
+from tare.modules.suspensions import router as suspensions_router
 from tare.modules.thresholds import router as thresholds_router
 from tare.modules.timesheets import router as timesheets_router
 from tare.modules.employers import router as employers_router
@@ -55,6 +56,7 @@ ROUTERS: list = [
     absences_router,
     leave_router,
     entitlements_router,
+    suspensions_router,
     holidays_router,
     levycodes_router,
     bands_router,

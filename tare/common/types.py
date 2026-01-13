@@ -304,3 +304,20 @@ class Entitlement(Row):
     year_starts_on: str
     days: int
     carried_in: int
+
+
+@dataclass
+class Suspension(Row):
+    """A run of periods a deduction is held off somebody's pay.
+
+    A deduction that cannot be taken — because the pay is not there, or because
+    an order outranks it — is suspended rather than lost.
+    """
+
+    employee_id: str
+    employer_id: str
+    element_id: str
+    reason: str
+    from_period: int
+    to_period: int | None
+    year_starts_on: str

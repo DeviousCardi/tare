@@ -393,6 +393,20 @@ def seed_entitlements(store: Store) -> None:
             year_starts_on=row[3], days=row[4], carried_in=row[5]))
 
 
+def seed_suspensions(store: Store) -> None:
+    """One suspension still running and one already lifted."""
+    from tare.common.types import Suspension
+
+    rows = [
+        ("su-1", "ee-1", "em-1", "el-4", "no pay to take it from", 3, None, "2025-04-06"),
+        ("su-2", "ee-2", "em-1", "el-4", "the employee asked", 1, 2, "2025-04-06"),
+    ]
+    for row in rows:
+        store.suspensions.insert(Suspension(
+            id=row[0], employee_id=row[1], employer_id=row[2], element_id=row[3],
+            reason=row[4], from_period=row[5], to_period=row[6], year_starts_on=row[7]))
+
+
 def seed_holidays(store: Store) -> None:
     """The Revenue's calendar, as far ahead as any test needs it."""
     from tare.common.types import Holiday
