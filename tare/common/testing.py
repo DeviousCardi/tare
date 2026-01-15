@@ -407,6 +407,22 @@ def seed_suspensions(store: Store) -> None:
             reason=row[4], from_period=row[5], to_period=row[6], year_starts_on=row[7]))
 
 
+def seed_rates(store: Store) -> None:
+    """A fixed basic rate, an overtime multiple, and one raised part-way."""
+    from tare.common.types import PayRate
+
+    rows = [
+        ("rt-1", "ee-1", "em-1", "el-1", "fixed", 260000, "2024-04-06"),
+        ("rt-2", "ee-1", "em-1", "el-1", "fixed", 268000, "2025-04-06"),
+        ("rt-3", "ee-1", "em-1", "el-2", "multiple", 15000, "2024-04-06"),
+        ("rt-4", "ee-2", "em-1", "el-1", "hourly", 1400, "2025-07-01"),
+    ]
+    for row in rows:
+        store.rates.insert(PayRate(
+            id=row[0], employee_id=row[1], employer_id=row[2], element_id=row[3],
+            basis=row[4], amount=row[5], effective_from=row[6]))
+
+
 def seed_holidays(store: Store) -> None:
     """The Revenue's calendar, as far ahead as any test needs it."""
     from tare.common.types import Holiday

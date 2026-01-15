@@ -321,3 +321,19 @@ class Suspension(Row):
     from_period: int
     to_period: int | None
     year_starts_on: str
+
+
+@dataclass
+class PayRate(Row):
+    """What one person is paid for one element.
+
+    `basis` says how `amount` reads: a fixed sum for the period, a sum for each
+    hour, or a multiple of the contract's own hourly rate in basis points.
+    """
+
+    employee_id: str
+    employer_id: str
+    element_id: str
+    basis: str
+    amount: int
+    effective_from: str
