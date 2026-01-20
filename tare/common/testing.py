@@ -423,6 +423,21 @@ def seed_rates(store: Store) -> None:
             basis=row[4], amount=row[5], effective_from=row[6]))
 
 
+def seed_deductions(store: Store) -> None:
+    """A union subscription for two people, one of them stopped part-way."""
+    from tare.common.types import DeductionInstruction
+
+    rows = [
+        ("dd-1", "ee-1", "em-1", "el-4", "fixed", 1500, 50, 1, None, "2025-04-06"),
+        ("dd-2", "ee-2", "em-1", "el-4", "share", 100, 60, 1, 6, "2025-04-06"),
+    ]
+    for row in rows:
+        store.deductions.insert(DeductionInstruction(
+            id=row[0], employee_id=row[1], employer_id=row[2], element_id=row[3],
+            basis=row[4], amount=row[5], priority=row[6], from_period=row[7],
+            to_period=row[8], year_starts_on=row[9]))
+
+
 def seed_holidays(store: Store) -> None:
     """The Revenue's calendar, as far ahead as any test needs it."""
     from tare.common.types import Holiday

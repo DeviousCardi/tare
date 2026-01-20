@@ -19,6 +19,7 @@ from tare.common.store import Store
 from tare.modules.calendars import router as calendars_router
 from tare.modules.contracts import router as contracts_router
 from tare.modules.costcentres import router as costcentres_router
+from tare.modules.deductions import router as deductions_router
 from tare.modules.departments import router as departments_router
 from tare.modules.elements import router as elements_router
 from tare.modules.employees import router as employees_router
@@ -59,6 +60,7 @@ ROUTERS: list = [
     entitlements_router,
     suspensions_router,
     rates_router,
+    deductions_router,
     holidays_router,
     levycodes_router,
     bands_router,

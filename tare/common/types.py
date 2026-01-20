@@ -337,3 +337,22 @@ class PayRate(Row):
     basis: str
     amount: int
     effective_from: str
+
+
+@dataclass
+class DeductionInstruction(Row):
+    """A standing instruction to take something off somebody's pay.
+
+    `priority` decides what is taken first when there is not enough to go
+    round: the lower the number, the earlier it is taken.
+    """
+
+    employee_id: str
+    employer_id: str
+    element_id: str
+    basis: str
+    amount: int
+    priority: int
+    from_period: int
+    to_period: int | None
+    year_starts_on: str
