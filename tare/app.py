@@ -24,6 +24,7 @@ from tare.modules.departments import router as departments_router
 from tare.modules.elements import router as elements_router
 from tare.modules.employees import router as employees_router
 from tare.modules.grades import router as grades_router
+from tare.modules.gross import router as gross_router
 from tare.modules.holidays import router as holidays_router
 from tare.modules.absences import router as absences_router
 from tare.modules.bands import router as bands_router
@@ -61,6 +62,7 @@ ROUTERS: list = [
     suspensions_router,
     rates_router,
     deductions_router,
+    gross_router,
     holidays_router,
     levycodes_router,
     bands_router,
