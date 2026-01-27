@@ -127,7 +127,8 @@ def test_no_bands_means_no_band_is_reached():
 
 
 def test_bands_are_listed():
-    assert service().list(MANAGER, ListBands())["total"] == 6
+    # Six for contribution letter A across two years, and four for the levy.
+    assert service().list(MANAGER, ListBands())["total"] == 10
 
 
 def test_a_listing_can_be_narrowed_to_the_set_in_force():
@@ -194,7 +195,7 @@ def client():
 
 
 def test_the_route_lists_bands():
-    assert client().get("/bands", headers=headers(MANAGER)).json()["total"] == 6
+    assert client().get("/bands", headers=headers(MANAGER)).json()["total"] == 10
 
 
 def test_the_route_reports_a_contribution():
