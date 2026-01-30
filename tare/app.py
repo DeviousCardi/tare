@@ -34,6 +34,7 @@ from tare.modules.entitlements import router as entitlements_router
 from tare.modules.exemptions import router as exemptions_router
 from tare.modules.net import router as net_router
 from tare.modules.patterns import router as patterns_router
+from tare.modules.payslips import router as payslips_router
 from tare.modules.positions import router as positions_router
 from tare.modules.rates import router as rates_router
 from tare.modules.reliefs import router as reliefs_router
@@ -65,6 +66,7 @@ ROUTERS: list = [
     deductions_router,
     gross_router,
     net_router,
+    payslips_router,
     holidays_router,
     levycodes_router,
     bands_router,

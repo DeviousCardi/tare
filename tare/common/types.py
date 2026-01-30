@@ -356,3 +356,39 @@ class DeductionInstruction(Row):
     from_period: int
     to_period: int | None
     year_starts_on: str
+
+
+@dataclass
+class Payslip(Row):
+    """What one person was paid for one period, as it was worked out.
+
+    A payslip is written once, when the run it belongs to is committed, and is
+    never changed after: a correction is a later payslip, not an edit to this
+    one.
+    """
+
+    run_id: str
+    employee_id: str
+    employer_id: str
+    period: int
+    start: str
+    end: str
+    gross: int
+    taxable: int
+    free_pay: int
+    levy: int
+    contributory: int
+    contributions: int
+    deductions: int
+    net: int
+
+
+@dataclass
+class PayslipLine(Row):
+    """One line on a payslip, in the order it was worked out."""
+
+    payslip_id: str
+    element_id: str
+    kind: str
+    hours: int
+    amount: int

@@ -442,6 +442,37 @@ def seed_deductions(store: Store) -> None:
             to_period=row[8], year_starts_on=row[9]))
 
 
+def seed_payslips(store: Store) -> None:
+    """Two committed periods for ee-1 and one for ee-4."""
+    from tare.common.types import Payslip, PayslipLine
+
+    rows = [
+        ("ps-slip-1", "rn-1", "ee-1", "em-1", 1, "2025-04-06", "2025-05-05",
+         268000, 268000, 108000, 32000, 268000, 12800, 1500, 221700),
+        ("ps-slip-2", "rn-2", "ee-1", "em-1", 2, "2025-05-06", "2025-06-05",
+         275299, 275299, 216000, 11860, 275299, 13384, 1500, 248555),
+        ("ps-slip-3", "rn-3", "ee-4", "em-2", 1, "2025-04-06", "2025-05-05",
+         346666, 346666, 108000, 47733, 346666, 19093, 0, 279840),
+    ]
+    for row in rows:
+        store.payslips.insert(Payslip(
+            id=row[0], run_id=row[1], employee_id=row[2], employer_id=row[3],
+            period=row[4], start=row[5], end=row[6], gross=row[7], taxable=row[8],
+            free_pay=row[9], levy=row[10], contributory=row[11],
+            contributions=row[12], deductions=row[13], net=row[14]))
+    lines = [
+        ("pl-1", "ps-slip-1", "el-1", "payment", 0, 268000),
+        ("pl-2", "ps-slip-1", "el-4", "deduction", 0, 1500),
+        ("pl-3", "ps-slip-2", "el-1", "payment", 0, 268000),
+        ("pl-4", "ps-slip-2", "el-2", "payment", 3, 7299),
+        ("pl-5", "ps-slip-2", "el-4", "deduction", 0, 1500),
+    ]
+    for row in lines:
+        store.payslip_lines.insert(PayslipLine(
+            id=row[0], payslip_id=row[1], element_id=row[2], kind=row[3],
+            hours=row[4], amount=row[5]))
+
+
 def seed_holidays(store: Store) -> None:
     """The Revenue's calendar, as far ahead as any test needs it."""
     from tare.common.types import Holiday
