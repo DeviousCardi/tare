@@ -392,3 +392,15 @@ class PayslipLine(Row):
     kind: str
     hours: int
     amount: int
+
+
+@dataclass
+class PayrollRun(Row):
+    """One pass of the payroll over one employer's period."""
+
+    employer_id: str
+    calendar_id: str
+    period: int
+    status: str
+    opened_on: str
+    committed_on: str | None
