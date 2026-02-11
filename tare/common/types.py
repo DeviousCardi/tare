@@ -404,3 +404,22 @@ class PayrollRun(Row):
     status: str
     opened_on: str
     committed_on: str | None
+
+
+@dataclass
+class Region(Row):
+    """A part of the country, for reporting and for regional allowances."""
+
+    code: str
+    name: str
+
+
+@dataclass
+class Site(Row):
+    """Somewhere an employer's people actually work."""
+
+    employer_id: str
+    region_id: str
+    code: str
+    name: str
+    closed: bool

@@ -12,7 +12,7 @@ kind of row it is at a glance and two tables never collide.
 
 from typing import Callable, Generic, Iterable, TypeVar
 
-from tare.common.types import Band, Contract, Employer, CostCentre, Department, Grade, PayCalendar, PayElement, PayRate, Payslip, PayslipLine, PayrollRun, Absence, DeductionInstruction, Entitlement, LeaveRequest, ScalePoint, Suspension, TimesheetLine, WorkingPattern, Employee, Exemption, Holiday, LevyCode, Position, Relief, Row, Threshold
+from tare.common.types import Band, Contract, Employer, CostCentre, Department, Grade, PayCalendar, Region, Site, PayElement, PayRate, Payslip, PayslipLine, PayrollRun, Absence, DeductionInstruction, Entitlement, LeaveRequest, ScalePoint, Suspension, TimesheetLine, WorkingPattern, Employee, Exemption, Holiday, LevyCode, Position, Relief, Row, Threshold
 
 T = TypeVar("T", bound=Row)
 
@@ -93,6 +93,8 @@ class Store:
         # for a table looks in the obvious place.
 
         # Who we run payroll for
+        self.regions: Table[Region] = Table("rg")
+        self.sites: Table[Site] = Table("st")
         self.employers: Table[Employer] = Table("em")
         self.employees: Table[Employee] = Table("ee")
         self.contracts: Table[Contract] = Table("ct")

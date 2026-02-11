@@ -38,7 +38,9 @@ from tare.modules.payslips import router as payslips_router
 from tare.modules.positions import router as positions_router
 from tare.modules.rates import router as rates_router
 from tare.modules.registers import router as registers_router
+from tare.modules.regions import router as regions_router
 from tare.modules.reliefs import router as reliefs_router
+from tare.modules.sites import router as sites_router
 from tare.modules.runs import router as runs_router
 from tare.modules.scales import router as scales_router
 from tare.modules.suspensions import router as suspensions_router
@@ -48,6 +50,8 @@ from tare.modules.employers import router as employers_router
 
 #: Every area's router, in the order the README describes the service.
 ROUTERS: list = [
+    regions_router,
+    sites_router,
     employers_router,
     employees_router,
     contracts_router,

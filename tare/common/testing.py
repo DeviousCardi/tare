@@ -473,6 +473,29 @@ def seed_payslips(store: Store) -> None:
             hours=row[4], amount=row[5]))
 
 
+def seed_regions(store: Store) -> None:
+    """Three regions, which is enough for a site in each and one spare."""
+    from tare.common.types import Region
+
+    for row in (("rg-1", "N", "North"), ("rg-2", "S", "South"), ("rg-3", "W", "West")):
+        store.regions.insert(Region(id=row[0], code=row[1], name=row[2]))
+
+
+def seed_sites(store: Store) -> None:
+    """Two sites at em-1, one of them closed, and one at em-2."""
+    from tare.common.types import Site
+
+    rows = [
+        ("st-1", "em-1", "rg-1", "HAL", "Halloway works", False),
+        ("st-2", "em-1", "rg-2", "SOU", "Southern store", True),
+        ("st-3", "em-2", "rg-1", "VER", "Verrin depot", False),
+    ]
+    for row in rows:
+        store.sites.insert(Site(
+            id=row[0], employer_id=row[1], region_id=row[2], code=row[3],
+            name=row[4], closed=row[5]))
+
+
 def seed_holidays(store: Store) -> None:
     """The Revenue's calendar, as far ahead as any test needs it."""
     from tare.common.types import Holiday
