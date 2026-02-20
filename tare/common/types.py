@@ -423,3 +423,32 @@ class Site(Row):
     code: str
     name: str
     closed: bool
+
+
+@dataclass
+class Premium(Row):
+    """An uplift for working at a time somebody would rather not.
+
+    `rate_basis_points` is what goes on top of the ordinary hourly rate, so
+    5000 is time and a half of the uplift alone.
+    """
+
+    employer_id: str
+    code: str
+    name: str
+    rate_basis_points: int
+    from_hour: int
+    to_hour: int
+    weekend_only: bool
+
+
+@dataclass
+class Allowance(Row):
+    """A flat sum somebody is paid every period for something."""
+
+    employee_id: str
+    employer_id: str
+    element_id: str
+    amount: int
+    starts_on: str
+    ends_on: str | None

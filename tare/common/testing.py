@@ -496,6 +496,22 @@ def seed_sites(store: Store) -> None:
             name=row[4], closed=row[5]))
 
 
+def seed_premiums(store: Store) -> None:
+    """A night uplift that wraps past midnight, and a weekend one."""
+    from tare.common.types import Premium
+
+    rows = [
+        ("pm-1", "em-1", "NIGHT", "Night shift", 3000, 22, 6, False),
+        ("pm-2", "em-1", "WKND", "Weekend", 5000, 0, 23, True),
+        ("pm-3", "em-2", "NIGHT", "Night shift", 2500, 22, 6, False),
+    ]
+    for row in rows:
+        store.premiums.insert(Premium(
+            id=row[0], employer_id=row[1], code=row[2], name=row[3],
+            rate_basis_points=row[4], from_hour=row[5], to_hour=row[6],
+            weekend_only=row[7]))
+
+
 def seed_holidays(store: Store) -> None:
     """The Revenue's calendar, as far ahead as any test needs it."""
     from tare.common.types import Holiday
