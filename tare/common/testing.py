@@ -512,6 +512,21 @@ def seed_premiums(store: Store) -> None:
             weekend_only=row[7]))
 
 
+def seed_allowances(store: Store) -> None:
+    """A tool allowance still running and one that has ended."""
+    from tare.common.types import Allowance
+
+    rows = [
+        ("al-1", "ee-1", "em-1", "el-3", 4500, "2025-01-01", None),
+        ("al-2", "ee-2", "em-1", "el-3", 2000, "2025-07-01", "2025-09-30"),
+        ("al-3", "ee-4", "em-2", "el-5", 6000, "2025-01-01", None),
+    ]
+    for row in rows:
+        store.allowances.insert(Allowance(
+            id=row[0], employee_id=row[1], employer_id=row[2], element_id=row[3],
+            amount=row[4], starts_on=row[5], ends_on=row[6]))
+
+
 def seed_holidays(store: Store) -> None:
     """The Revenue's calendar, as far ahead as any test needs it."""
     from tare.common.types import Holiday
