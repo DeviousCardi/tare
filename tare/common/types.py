@@ -452,3 +452,33 @@ class Allowance(Row):
     amount: int
     starts_on: str
     ends_on: str | None
+
+
+@dataclass
+class EarningsOrder(Row):
+    """A court order to take money out of somebody's pay.
+
+    `total` is what the order is for in all; `per_period` is what it asks for
+    each time. `collected` is what has been taken so far.
+    """
+
+    employee_id: str
+    employer_id: str
+    reference: str
+    total: int
+    per_period: int
+    collected: int
+    priority: int
+    made_on: str
+    discharged_on: str | None
+
+
+@dataclass
+class ProtectedEarnings(Row):
+    """The figure an order may not take somebody's pay below."""
+
+    employee_id: str
+    employer_id: str
+    floor: int
+    starts_on: str
+    ends_on: str | None

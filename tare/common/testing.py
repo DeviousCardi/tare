@@ -527,6 +527,22 @@ def seed_allowances(store: Store) -> None:
             amount=row[4], starts_on=row[5], ends_on=row[6]))
 
 
+def seed_orders(store: Store) -> None:
+    """Two orders whose totals divide exactly by what they ask for each period."""
+    from tare.common.types import EarningsOrder
+
+    rows = [
+        ("or-1", "ee-1", "em-1", "CT/2025/0001", 60000, 5000, 15000, 10, "2025-02-01", None),
+        ("or-2", "ee-2", "em-1", "CT/2025/0002", 24000, 4000, 24000, 20, "2025-03-01", None),
+        ("or-3", "ee-4", "em-2", "CT/2025/0003", 30000, 3000, 0, 10, "2025-04-01", None),
+    ]
+    for row in rows:
+        store.orders.insert(EarningsOrder(
+            id=row[0], employee_id=row[1], employer_id=row[2], reference=row[3],
+            total=row[4], per_period=row[5], collected=row[6], priority=row[7],
+            made_on=row[8], discharged_on=row[9]))
+
+
 def seed_holidays(store: Store) -> None:
     """The Revenue's calendar, as far ahead as any test needs it."""
     from tare.common.types import Holiday
