@@ -543,6 +543,20 @@ def seed_orders(store: Store) -> None:
             made_on=row[8], discharged_on=row[9]))
 
 
+def seed_protections(store: Store) -> None:
+    """A floor each for the two people who carry an earnings order."""
+    from tare.common.types import ProtectedEarnings
+
+    rows = [
+        ("pr-1", "ee-1", "em-1", 120000, "2025-02-01", None),
+        ("pr-2", "ee-2", "em-1", 90000, "2025-03-01", None),
+    ]
+    for row in rows:
+        store.protections.insert(ProtectedEarnings(
+            id=row[0], employee_id=row[1], employer_id=row[2], floor=row[3],
+            starts_on=row[4], ends_on=row[5]))
+
+
 def seed_holidays(store: Store) -> None:
     """The Revenue's calendar, as far ahead as any test needs it."""
     from tare.common.types import Holiday
