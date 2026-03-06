@@ -482,3 +482,28 @@ class ProtectedEarnings(Row):
     floor: int
     starts_on: str
     ends_on: str | None
+
+
+@dataclass
+class Provider(Row):
+    """Somebody the bureau sends money to on an employee's behalf."""
+
+    code: str
+    name: str
+    kind: str
+    account: str
+
+
+@dataclass
+class PensionScheme(Row):
+    """A scheme an employer runs, and what it takes from each side."""
+
+    employer_id: str
+    provider_id: str
+    code: str
+    name: str
+    employee_basis_points: int
+    employer_basis_points: int
+    qualifying_floor: int
+    opened_on: str
+    closed_on: str | None

@@ -557,6 +557,20 @@ def seed_protections(store: Store) -> None:
             starts_on=row[4], ends_on=row[5]))
 
 
+def seed_providers(store: Store) -> None:
+    """One of each kind the bureau sends money to."""
+    from tare.common.types import Provider
+
+    rows = [
+        ("pv-1", "APEX", "Apex Pensions", "pension", "20-11-45/40028761"),
+        ("pv-2", "UNI", "United Trades", "union", "30-22-10/11223344"),
+        ("pv-3", "COURT", "County Court", "court", "60-01-01/99887766"),
+    ]
+    for row in rows:
+        store.providers.insert(Provider(
+            id=row[0], code=row[1], name=row[2], kind=row[3], account=row[4]))
+
+
 def seed_holidays(store: Store) -> None:
     """The Revenue's calendar, as far ahead as any test needs it."""
     from tare.common.types import Holiday
