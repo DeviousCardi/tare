@@ -571,6 +571,25 @@ def seed_providers(store: Store) -> None:
             id=row[0], code=row[1], name=row[2], kind=row[3], account=row[4]))
 
 
+def seed_schemes(store: Store) -> None:
+    """A scheme at each employer, one of them closed to new members."""
+    from tare.common.types import PensionScheme
+
+    rows = [
+        ("sc-1", "em-1", "pv-1", "MAIN", "Halloway main", 500, 300, 120000,
+         "2024-01-01", None),
+        ("sc-2", "em-1", "pv-1", "OLD", "Halloway legacy", 400, 400, 100000,
+         "2020-01-01", "2024-12-31"),
+        ("sc-3", "em-2", "pv-1", "MAIN", "Verrin main", 500, 300, 120000,
+         "2024-01-01", None),
+    ]
+    for row in rows:
+        store.schemes.insert(PensionScheme(
+            id=row[0], employer_id=row[1], provider_id=row[2], code=row[3],
+            name=row[4], employee_basis_points=row[5], employer_basis_points=row[6],
+            qualifying_floor=row[7], opened_on=row[8], closed_on=row[9]))
+
+
 def seed_holidays(store: Store) -> None:
     """The Revenue's calendar, as far ahead as any test needs it."""
     from tare.common.types import Holiday
