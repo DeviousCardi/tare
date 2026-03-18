@@ -590,6 +590,22 @@ def seed_schemes(store: Store) -> None:
             qualifying_floor=row[7], opened_on=row[8], closed_on=row[9]))
 
 
+def seed_mandates(store: Store) -> None:
+    """A mandate each, one of them replaced part-way through the year."""
+    from tare.common.types import Mandate
+
+    rows = [
+        ("md-1", "ee-1", "em-1", "20-11-45/40028761", "N Harrow", "2024-01-01", "2025-05-31"),
+        ("md-2", "ee-1", "em-1", "20-11-45/40028762", "N Harrow", "2025-06-01", None),
+        ("md-3", "ee-2", "em-1", "30-22-10/11223344", "B Cottle", "2025-07-01", None),
+        ("md-4", "ee-4", "em-2", "60-01-01/99887766", "W Attley", "2024-03-01", None),
+    ]
+    for row in rows:
+        store.mandates.insert(Mandate(
+            id=row[0], employee_id=row[1], employer_id=row[2], account=row[3],
+            holder=row[4], starts_on=row[5], ends_on=row[6]))
+
+
 def seed_holidays(store: Store) -> None:
     """The Revenue's calendar, as far ahead as any test needs it."""
     from tare.common.types import Holiday

@@ -33,6 +33,7 @@ from tare.modules.leave import router as leave_router
 from tare.modules.levycodes import router as levycodes_router
 from tare.modules.entitlements import router as entitlements_router
 from tare.modules.exemptions import router as exemptions_router
+from tare.modules.mandates import router as mandates_router
 from tare.modules.net import router as net_router
 from tare.modules.orders import router as orders_router
 from tare.modules.patterns import router as patterns_router
@@ -59,6 +60,7 @@ ROUTERS: list = [
     regions_router,
     providers_router,
     pensions_router,
+    mandates_router,
     sites_router,
     employers_router,
     employees_router,

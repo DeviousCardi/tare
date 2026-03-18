@@ -507,3 +507,29 @@ class PensionScheme(Row):
     qualifying_floor: int
     opened_on: str
     closed_on: str | None
+
+
+@dataclass
+class Mandate(Row):
+    """Where somebody's pay is sent, and from when."""
+
+    employee_id: str
+    employer_id: str
+    account: str
+    holder: str
+    starts_on: str
+    ends_on: str | None
+
+
+@dataclass
+class PaymentInstruction(Row):
+    """One line of a payment run: who is paid, how much, into what."""
+
+    run_id: str
+    employee_id: str
+    employer_id: str
+    account: str
+    amount: int
+    status: str
+    issued_on: str
+    settled_on: str | None
