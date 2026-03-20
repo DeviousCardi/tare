@@ -37,6 +37,7 @@ from tare.modules.mandates import router as mandates_router
 from tare.modules.net import router as net_router
 from tare.modules.orders import router as orders_router
 from tare.modules.patterns import router as patterns_router
+from tare.modules.payments import router as payments_router
 from tare.modules.payslips import router as payslips_router
 from tare.modules.positions import router as positions_router
 from tare.modules.pensions import router as pensions_router
@@ -61,6 +62,7 @@ ROUTERS: list = [
     providers_router,
     pensions_router,
     mandates_router,
+    payments_router,
     sites_router,
     employers_router,
     employees_router,

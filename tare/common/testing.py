@@ -606,6 +606,25 @@ def seed_mandates(store: Store) -> None:
             holder=row[4], starts_on=row[5], ends_on=row[6]))
 
 
+def seed_payments(store: Store) -> None:
+    """One settled instruction and one still on its way."""
+    from tare.common.types import PaymentInstruction
+
+    rows = [
+        ("py-1", "rn-1", "ee-1", "em-1", "20-11-45/40028761", 221700, "settled",
+         "2025-05-28", "2025-05-29"),
+        ("py-2", "rn-2", "ee-1", "em-1", "20-11-45/40028762", 248555, "issued",
+         "2025-06-28", None),
+        ("py-3", "rn-3", "ee-4", "em-2", "60-01-01/99887766", 279840, "settled",
+         "2025-05-28", "2025-05-29"),
+    ]
+    for row in rows:
+        store.payments.insert(PaymentInstruction(
+            id=row[0], run_id=row[1], employee_id=row[2], employer_id=row[3],
+            account=row[4], amount=row[5], status=row[6], issued_on=row[7],
+            settled_on=row[8]))
+
+
 def seed_holidays(store: Store) -> None:
     """The Revenue's calendar, as far ahead as any test needs it."""
     from tare.common.types import Holiday
