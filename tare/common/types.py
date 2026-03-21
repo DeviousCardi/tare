@@ -533,3 +533,17 @@ class PaymentInstruction(Row):
     status: str
     issued_on: str
     settled_on: str | None
+
+
+@dataclass
+class ExpenseClaim(Row):
+    """Something somebody paid for and wants back."""
+
+    employee_id: str
+    employer_id: str
+    element_id: str
+    kind: str
+    amount: int
+    incurred_on: str
+    claimed_on: str
+    status: str

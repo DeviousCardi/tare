@@ -625,6 +625,23 @@ def seed_payments(store: Store) -> None:
             settled_on=row[8]))
 
 
+def seed_expenses(store: Store) -> None:
+    """One approved claim, one rejected, and one still waiting."""
+    from tare.common.types import ExpenseClaim
+
+    rows = [
+        ("xp-1", "ee-1", "em-1", "el-3", "travel", 4200, "2025-06-02", "2025-06-03", "approved"),
+        ("xp-2", "ee-1", "em-1", "el-3", "meals", 1800, "2025-06-04", "2025-06-05", "rejected"),
+        ("xp-3", "ee-1", "em-1", "el-3", "travel", 3600, "2025-07-01", "2025-07-02", "claimed"),
+        ("xp-4", "ee-4", "em-2", "el-5", "travel", 5000, "2025-06-02", "2025-06-03", "approved"),
+    ]
+    for row in rows:
+        store.expenses.insert(ExpenseClaim(
+            id=row[0], employee_id=row[1], employer_id=row[2], element_id=row[3],
+            kind=row[4], amount=row[5], incurred_on=row[6], claimed_on=row[7],
+            status=row[8]))
+
+
 def seed_holidays(store: Store) -> None:
     """The Revenue's calendar, as far ahead as any test needs it."""
     from tare.common.types import Holiday
