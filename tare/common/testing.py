@@ -642,6 +642,22 @@ def seed_expenses(store: Store) -> None:
             status=row[8]))
 
 
+def seed_journeys(store: Store) -> None:
+    """A few short trips, one of them still waiting on approval."""
+    from tare.common.types import Journey
+
+    rows = [
+        ("jn-1", "ee-1", "em-1", "2025-06-02", 120, "Site visit", True),
+        ("jn-2", "ee-1", "em-1", "2025-06-16", 80, "Supplier", True),
+        ("jn-3", "ee-1", "em-1", "2025-07-01", 40, "Training", False),
+        ("jn-4", "ee-4", "em-2", "2025-06-02", 200, "Delivery", True),
+    ]
+    for row in rows:
+        store.journeys.insert(Journey(
+            id=row[0], employee_id=row[1], employer_id=row[2], travelled_on=row[3],
+            miles=row[4], reason=row[5], approved=row[6]))
+
+
 def seed_holidays(store: Store) -> None:
     """The Revenue's calendar, as far ahead as any test needs it."""
     from tare.common.types import Holiday

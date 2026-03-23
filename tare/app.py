@@ -30,6 +30,7 @@ from tare.modules.holidays import router as holidays_router
 from tare.modules.absences import router as absences_router
 from tare.modules.allowances import router as allowances_router
 from tare.modules.bands import router as bands_router
+from tare.modules.journeys import router as journeys_router
 from tare.modules.leave import router as leave_router
 from tare.modules.levycodes import router as levycodes_router
 from tare.modules.entitlements import router as entitlements_router
@@ -65,6 +66,7 @@ ROUTERS: list = [
     mandates_router,
     payments_router,
     expenses_router,
+    journeys_router,
     sites_router,
     employers_router,
     employees_router,

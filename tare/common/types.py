@@ -547,3 +547,15 @@ class ExpenseClaim(Row):
     incurred_on: str
     claimed_on: str
     status: str
+
+
+@dataclass
+class Journey(Row):
+    """A trip somebody made in their own car, and what it is worth."""
+
+    employee_id: str
+    employer_id: str
+    travelled_on: str
+    miles: int
+    reason: str
+    approved: bool
