@@ -559,3 +559,26 @@ class Journey(Row):
     miles: int
     reason: str
     approved: bool
+
+
+@dataclass
+class BenefitClass(Row):
+    """A kind of benefit an employer provides, and how it is valued."""
+
+    employer_id: str
+    code: str
+    name: str
+    basis: str
+    annual_value: int
+
+
+@dataclass
+class BenefitAward(Row):
+    """One person's use of a benefit, and what they put toward it."""
+
+    employee_id: str
+    employer_id: str
+    class_id: str
+    contribution: int
+    starts_on: str
+    ends_on: str | None

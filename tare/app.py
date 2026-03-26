@@ -56,6 +56,7 @@ from tare.modules.scales import router as scales_router
 from tare.modules.suspensions import router as suspensions_router
 from tare.modules.thresholds import router as thresholds_router
 from tare.modules.timesheets import router as timesheets_router
+from tare.modules.valuations import router as valuations_router
 from tare.modules.employers import router as employers_router
 
 #: Every area's router, in the order the README describes the service.
@@ -67,6 +68,7 @@ ROUTERS: list = [
     payments_router,
     expenses_router,
     journeys_router,
+    valuations_router,
     sites_router,
     employers_router,
     employees_router,

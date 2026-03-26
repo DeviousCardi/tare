@@ -658,6 +658,21 @@ def seed_journeys(store: Store) -> None:
             miles=row[4], reason=row[5], approved=row[6]))
 
 
+def seed_benefit_classes(store: Store) -> None:
+    """A car and a medical plan, both quoted at figures that divide the year."""
+    from tare.common.types import BenefitClass
+
+    rows = [
+        ("bc-1", "em-1", "CAR", "Company car", "flat", 730000),
+        ("bc-2", "em-1", "MED", "Medical plan", "flat", 36500),
+        ("bc-3", "em-2", "CAR", "Company car", "flat", 730000),
+    ]
+    for row in rows:
+        store.benefit_classes.insert(BenefitClass(
+            id=row[0], employer_id=row[1], code=row[2], name=row[3],
+            basis=row[4], annual_value=row[5]))
+
+
 def seed_holidays(store: Store) -> None:
     """The Revenue's calendar, as far ahead as any test needs it."""
     from tare.common.types import Holiday
