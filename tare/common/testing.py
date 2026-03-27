@@ -673,6 +673,21 @@ def seed_benefit_classes(store: Store) -> None:
             basis=row[4], annual_value=row[5]))
 
 
+def seed_benefits(store: Store) -> None:
+    """A car with nothing put toward it, and a medical plan that ended."""
+    from tare.common.types import BenefitAward
+
+    rows = [
+        ("bn-1", "ee-1", "em-1", "bc-1", 0, "2025-01-01", None),
+        ("bn-2", "ee-2", "em-1", "bc-2", 0, "2025-07-01", "2025-09-30"),
+        ("bn-3", "ee-4", "em-2", "bc-3", 0, "2025-01-01", None),
+    ]
+    for row in rows:
+        store.benefits.insert(BenefitAward(
+            id=row[0], employee_id=row[1], employer_id=row[2], class_id=row[3],
+            contribution=row[4], starts_on=row[5], ends_on=row[6]))
+
+
 def seed_holidays(store: Store) -> None:
     """The Revenue's calendar, as far ahead as any test needs it."""
     from tare.common.types import Holiday
