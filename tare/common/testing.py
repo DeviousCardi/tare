@@ -688,6 +688,22 @@ def seed_benefits(store: Store) -> None:
             contribution=row[4], starts_on=row[5], ends_on=row[6]))
 
 
+def seed_service(store: Store) -> None:
+    """One unbroken run, and one broken by a gap nobody would call short."""
+    from tare.common.types import ServiceRecord
+
+    rows = [
+        ("sr-1", "ee-1", "em-1", "2020-04-06", None, "Joined"),
+        ("sr-2", "ee-3", "em-1", "2019-01-07", "2020-06-30", "First spell"),
+        ("sr-3", "ee-3", "em-1", "2021-01-11", "2025-05-31", "Came back"),
+        ("sr-4", "ee-4", "em-2", "2024-03-01", None, "Joined"),
+    ]
+    for row in rows:
+        store.service.insert(ServiceRecord(
+            id=row[0], employee_id=row[1], employer_id=row[2], started_on=row[3],
+            ended_on=row[4], reason=row[5]))
+
+
 def seed_holidays(store: Store) -> None:
     """The Revenue's calendar, as far ahead as any test needs it."""
     from tare.common.types import Holiday

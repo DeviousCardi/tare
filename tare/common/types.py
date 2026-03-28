@@ -582,3 +582,14 @@ class BenefitAward(Row):
     contribution: int
     starts_on: str
     ends_on: str | None
+
+
+@dataclass
+class ServiceRecord(Row):
+    """A run of employment, which may or may not join up with the one before."""
+
+    employee_id: str
+    employer_id: str
+    started_on: str
+    ended_on: str | None
+    reason: str
