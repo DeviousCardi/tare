@@ -12,7 +12,7 @@ kind of row it is at a glance and two tables never collide.
 
 from typing import Callable, Generic, Iterable, TypeVar
 
-from tare.common.types import Band, Contract, Employer, CostCentre, Department, Allowance, BenefitAward, ServiceRecord, BenefitClass, EarningsOrder, ExpenseClaim, Journey, Mandate, PaymentInstruction, PensionScheme, Provider, Grade, ProtectedEarnings, PayCalendar, Premium, Region, Site, PayElement, PayRate, Payslip, PayslipLine, PayrollRun, Absence, DeductionInstruction, Entitlement, LeaveRequest, ScalePoint, Suspension, TimesheetLine, WorkingPattern, Employee, Exemption, Holiday, LevyCode, Position, Relief, Row, Threshold
+from tare.common.types import Band, Contract, Employer, CostCentre, Department, Allowance, ArchiveEntry, AuditEntry, BenefitAward, Notice, ServiceRecord, BenefitClass, EarningsOrder, ExpenseClaim, Journey, Mandate, PaymentInstruction, PensionScheme, Provider, Grade, ProtectedEarnings, PayCalendar, Premium, Region, Site, PayElement, PayRate, Payslip, PayslipLine, PayrollRun, Absence, DeductionInstruction, Entitlement, LeaveRequest, ScalePoint, Suspension, TimesheetLine, WorkingPattern, Employee, Exemption, Holiday, LevyCode, Position, Relief, Row, Threshold
 
 T = TypeVar("T", bound=Row)
 
@@ -133,6 +133,11 @@ class Store:
         self.runs: Table[PayrollRun] = Table("rn")
         self.payslips: Table[Payslip] = Table("ps-slip")
         self.payslip_lines: Table[PayslipLine] = Table("pl")
+
+        # What the bureau keeps a record of
+        self.audit: Table[AuditEntry] = Table("au")
+        self.notices: Table[Notice] = Table("nt")
+        self.archive: Table[ArchiveEntry] = Table("ar")
 
         # What the Revenue publishes
         self.providers: Table[Provider] = Table("pv")

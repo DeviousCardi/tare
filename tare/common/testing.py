@@ -704,6 +704,22 @@ def seed_service(store: Store) -> None:
             ended_on=row[4], reason=row[5]))
 
 
+def seed_audit(store: Store) -> None:
+    """A few entries, one of them the bureau's own against no employer."""
+    from tare.common.types import AuditEntry
+
+    rows = [
+        ("au-1", "op-1", "Rae", None, "published levy code", "L1", "2025-04-06"),
+        ("au-2", "op-2", "Sol", "em-1", "committed run", "rn-1", "2025-05-07"),
+        ("au-3", "op-2", "Sol", "em-1", "committed run", "rn-2", "2025-06-07"),
+        ("au-4", "op-1", "Rae", "em-2", "committed run", "rn-3", "2025-05-07"),
+    ]
+    for row in rows:
+        store.audit.insert(AuditEntry(
+            id=row[0], operator_id=row[1], operator_name=row[2], employer_id=row[3],
+            action=row[4], subject=row[5], happened_on=row[6]))
+
+
 def seed_holidays(store: Store) -> None:
     """The Revenue's calendar, as far ahead as any test needs it."""
     from tare.common.types import Holiday

@@ -593,3 +593,38 @@ class ServiceRecord(Row):
     started_on: str
     ended_on: str | None
     reason: str
+
+
+@dataclass
+class AuditEntry(Row):
+    """Who did what, and when. Written once and never changed."""
+
+    operator_id: str
+    operator_name: str
+    employer_id: str | None
+    action: str
+    subject: str
+    happened_on: str
+
+
+@dataclass
+class Notice(Row):
+    """A letter the bureau sends somebody."""
+
+    employee_id: str
+    employer_id: str
+    kind: str
+    subject: str
+    raised_on: str
+    sent_on: str | None
+
+
+@dataclass
+class ArchiveEntry(Row):
+    """A run put beyond further change, and the day it was closed off."""
+
+    employer_id: str
+    run_id: str
+    closed_on: str
+    payslips: int
+    net: int
