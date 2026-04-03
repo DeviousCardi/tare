@@ -720,6 +720,22 @@ def seed_audit(store: Store) -> None:
             action=row[4], subject=row[5], happened_on=row[6]))
 
 
+def seed_notices(store: Store) -> None:
+    """One sent, one raised only yesterday, one that has sat too long."""
+    from tare.common.types import Notice
+
+    rows = [
+        ("nt-1", "ee-1", "em-1", "payslip", "May payslip", "2025-05-28", "2025-05-29"),
+        ("nt-2", "ee-1", "em-1", "payslip", "June payslip", "2025-06-28", None),
+        ("nt-3", "ee-2", "em-1", "order served", "CT/2025/0002", "2025-03-01", None),
+        ("nt-4", "ee-4", "em-2", "payslip", "May payslip", "2025-05-28", None),
+    ]
+    for row in rows:
+        store.notices.insert(Notice(
+            id=row[0], employee_id=row[1], employer_id=row[2], kind=row[3],
+            subject=row[4], raised_on=row[5], sent_on=row[6]))
+
+
 def seed_holidays(store: Store) -> None:
     """The Revenue's calendar, as far ahead as any test needs it."""
     from tare.common.types import Holiday
