@@ -736,6 +736,20 @@ def seed_notices(store: Store) -> None:
             subject=row[4], raised_on=row[5], sent_on=row[6]))
 
 
+def seed_archive(store: Store) -> None:
+    """One run closed off at each employer."""
+    from tare.common.types import ArchiveEntry
+
+    rows = [
+        ("ar-1", "em-1", "rn-1", "2025-06-30", 1, 221700),
+        ("ar-2", "em-2", "rn-3", "2025-06-30", 1, 279840),
+    ]
+    for row in rows:
+        store.archive.insert(ArchiveEntry(
+            id=row[0], employer_id=row[1], run_id=row[2], closed_on=row[3],
+            payslips=row[4], net=row[5]))
+
+
 def seed_holidays(store: Store) -> None:
     """The Revenue's calendar, as far ahead as any test needs it."""
     from tare.common.types import Holiday
