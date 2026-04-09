@@ -628,3 +628,16 @@ class ArchiveEntry(Row):
     closed_on: str
     payslips: int
     net: int
+
+
+@dataclass
+class JournalLine(Row):
+    """One side of one posting from a payroll run to the nominal ledger."""
+
+    run_id: str
+    employer_id: str
+    account: str
+    cost_centre_id: str | None
+    debit: int
+    credit: int
+    narrative: str
