@@ -750,6 +750,24 @@ def seed_archive(store: Store) -> None:
             payslips=row[4], net=row[5]))
 
 
+def seed_loan_plans(store: Store) -> None:
+    """One plan part-way through and one already settled."""
+    from tare.common.types import LoanPlan
+
+    rows = [
+        ("lp-1", "ee-1", "em-1", "GC/2019/0001", "two", 1800000, 420000, 180000,
+         900, "2022-04-06", None),
+        ("lp-2", "ee-2", "em-1", "GC/2018/0002", "one", 900000, 900000, 160000,
+         900, "2021-04-06", "2025-03-31"),
+    ]
+    for row in rows:
+        store.loan_plans.insert(LoanPlan(
+            id=row[0], employee_id=row[1], employer_id=row[2], reference=row[3],
+            plan_type=row[4], total=row[5], collected=row[6],
+            period_threshold=row[7], rate_basis_points=row[8], started_on=row[9],
+            settled_on=row[10]))
+
+
 def seed_holidays(store: Store) -> None:
     """The Revenue's calendar, as far ahead as any test needs it."""
     from tare.common.types import Holiday

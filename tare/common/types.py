@@ -641,3 +641,19 @@ class JournalLine(Row):
     debit: int
     credit: int
     narrative: str
+
+
+@dataclass
+class LoanPlan(Row):
+    """A graduate contribution plan somebody is repaying through the payroll."""
+
+    employee_id: str
+    employer_id: str
+    reference: str
+    plan_type: str
+    total: int
+    collected: int
+    period_threshold: int
+    rate_basis_points: int
+    started_on: str
+    settled_on: str | None
