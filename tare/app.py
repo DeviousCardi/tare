@@ -58,6 +58,7 @@ from tare.modules.registers import router as registers_router
 from tare.modules.regions import router as regions_router
 from tare.modules.reliefs import router as reliefs_router
 from tare.modules.sites import router as sites_router
+from tare.modules.remittances import router as remittances_router
 from tare.modules.runs import router as runs_router
 from tare.modules.scales import router as scales_router
 from tare.modules.suspensions import router as suspensions_router
@@ -83,6 +84,7 @@ ROUTERS: list = [
     archive_router,
     journals_router,
     loanplans_router,
+    remittances_router,
     sites_router,
     employers_router,
     employees_router,

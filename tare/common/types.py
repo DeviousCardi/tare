@@ -657,3 +657,15 @@ class LoanPlan(Row):
     rate_basis_points: int
     started_on: str
     settled_on: str | None
+
+
+@dataclass
+class Remittance(Row):
+    """What the bureau owes one provider for one run."""
+
+    run_id: str
+    employer_id: str
+    provider_id: str
+    amount: int
+    due_on: str
+    sent_on: str | None

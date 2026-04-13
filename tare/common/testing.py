@@ -768,6 +768,22 @@ def seed_loan_plans(store: Store) -> None:
             settled_on=row[10]))
 
 
+def seed_remittances(store: Store) -> None:
+    """One sent, one still waiting, one long past its day."""
+    from tare.common.types import Remittance
+
+    rows = [
+        ("rm-1", "rn-1", "em-1", "pv-1", 44800, "2025-05-26", "2025-05-20"),
+        ("rm-2", "rn-2", "em-1", "pv-1", 25244, "2025-06-26", None),
+        ("rm-3", "rn-1", "em-1", "pv-2", 1500, "2025-05-26", None),
+        ("rm-4", "rn-3", "em-2", "pv-1", 66826, "2025-05-26", None),
+    ]
+    for row in rows:
+        store.remittances.insert(Remittance(
+            id=row[0], run_id=row[1], employer_id=row[2], provider_id=row[3],
+            amount=row[4], due_on=row[5], sent_on=row[6]))
+
+
 def seed_holidays(store: Store) -> None:
     """The Revenue's calendar, as far ahead as any test needs it."""
     from tare.common.types import Holiday
