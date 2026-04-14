@@ -784,6 +784,21 @@ def seed_remittances(store: Store) -> None:
             amount=row[4], due_on=row[5], sent_on=row[6]))
 
 
+def seed_reviews(store: Store) -> None:
+    """One review still open and one already closed."""
+    from tare.common.types import PayReview
+
+    rows = [
+        ("rv-1", "em-1", "PR/2025", "2025-04-06", "2025-02-01", None),
+        ("rv-2", "em-1", "PR/2024", "2024-04-06", "2024-02-01", "2024-04-30"),
+        ("rv-3", "em-2", "PR/2025", "2025-04-06", "2025-02-01", None),
+    ]
+    for row in rows:
+        store.reviews.insert(PayReview(
+            id=row[0], employer_id=row[1], reference=row[2],
+            effective_from=row[3], opened_on=row[4], closed_on=row[5]))
+
+
 def seed_holidays(store: Store) -> None:
     """The Revenue's calendar, as far ahead as any test needs it."""
     from tare.common.types import Holiday

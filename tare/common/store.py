@@ -12,7 +12,7 @@ kind of row it is at a glance and two tables never collide.
 
 from typing import Callable, Generic, Iterable, TypeVar
 
-from tare.common.types import Band, Contract, Employer, CostCentre, Department, Allowance, ArchiveEntry, AuditEntry, JournalLine, LoanPlan, Remittance, BenefitAward, Notice, ServiceRecord, BenefitClass, EarningsOrder, ExpenseClaim, Journey, Mandate, PaymentInstruction, PensionScheme, Provider, Grade, ProtectedEarnings, PayCalendar, Premium, Region, Site, PayElement, PayRate, Payslip, PayslipLine, PayrollRun, Absence, DeductionInstruction, Entitlement, LeaveRequest, ScalePoint, Suspension, TimesheetLine, WorkingPattern, Employee, Exemption, Holiday, LevyCode, Position, Relief, Row, Threshold
+from tare.common.types import Band, Contract, Employer, CostCentre, Department, Allowance, ArchiveEntry, AuditEntry, JournalLine, LoanPlan, PayAward, PayReview, Remittance, BenefitAward, Notice, ServiceRecord, BenefitClass, EarningsOrder, ExpenseClaim, Journey, Mandate, PaymentInstruction, PensionScheme, Provider, Grade, ProtectedEarnings, PayCalendar, Premium, Region, Site, PayElement, PayRate, Payslip, PayslipLine, PayrollRun, Absence, DeductionInstruction, Entitlement, LeaveRequest, ScalePoint, Suspension, TimesheetLine, WorkingPattern, Employee, Exemption, Holiday, LevyCode, Position, Relief, Row, Threshold
 
 T = TypeVar("T", bound=Row)
 
@@ -127,6 +127,8 @@ class Store:
         self.orders: Table[EarningsOrder] = Table("or")
         self.loan_plans: Table[LoanPlan] = Table("lp")
         self.remittances: Table[Remittance] = Table("rm")
+        self.reviews: Table[PayReview] = Table("rv")
+        self.awards: Table[PayAward] = Table("aw")
         self.protections: Table[ProtectedEarnings] = Table("pr")
 
         # What came out of a run

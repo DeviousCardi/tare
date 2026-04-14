@@ -669,3 +669,27 @@ class Remittance(Row):
     amount: int
     due_on: str
     sent_on: str | None
+
+
+@dataclass
+class PayReview(Row):
+    """A round of pay awards an employer runs across its people."""
+
+    employer_id: str
+    reference: str
+    effective_from: str
+    opened_on: str
+    closed_on: str | None
+
+
+@dataclass
+class PayAward(Row):
+    """What one person got out of a review."""
+
+    review_id: str
+    employee_id: str
+    employer_id: str
+    basis: str
+    amount: int
+    old_salary: int
+    new_salary: int
