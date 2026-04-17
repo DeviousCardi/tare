@@ -33,6 +33,7 @@ from tare.modules.absences import router as absences_router
 from tare.modules.allowances import router as allowances_router
 from tare.modules.archive import router as archive_router
 from tare.modules.audit import router as audit_router
+from tare.modules.awards import router as awards_router
 from tare.modules.bands import router as bands_router
 from tare.modules.journals import router as journals_router
 from tare.modules.journeys import router as journeys_router
@@ -87,6 +88,7 @@ ROUTERS: list = [
     loanplans_router,
     remittances_router,
     reviews_router,
+    awards_router,
     sites_router,
     employers_router,
     employees_router,

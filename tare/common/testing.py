@@ -799,6 +799,20 @@ def seed_reviews(store: Store) -> None:
             effective_from=row[3], opened_on=row[4], closed_on=row[5]))
 
 
+def seed_awards(store: Store) -> None:
+    """Two awards quoted at shares that come out whole against these salaries."""
+    from tare.common.types import PayAward
+
+    rows = [
+        ("aw-1", "rv-1", "ee-1", "em-1", "share", 300, 3120000, 3213600),
+        ("aw-2", "rv-1", "ee-3", "em-1", "flat", 50000, 2600000, 2650000),
+    ]
+    for row in rows:
+        store.awards.insert(PayAward(
+            id=row[0], review_id=row[1], employee_id=row[2], employer_id=row[3],
+            basis=row[4], amount=row[5], old_salary=row[6], new_salary=row[7]))
+
+
 def seed_holidays(store: Store) -> None:
     """The Revenue's calendar, as far ahead as any test needs it."""
     from tare.common.types import Holiday
