@@ -813,6 +813,22 @@ def seed_awards(store: Store) -> None:
             basis=row[4], amount=row[5], old_salary=row[6], new_salary=row[7]))
 
 
+def seed_groups(store: Store) -> None:
+    """Two groups, with both employers in the first one."""
+    from tare.common.types import EmployerGroup, GroupMembership
+
+    store.groups.insert(EmployerGroup(id="gp-1", code="HAL", name="Halloway Holdings"))
+    store.groups.insert(EmployerGroup(id="gp-2", code="OTH", name="Other Holdings"))
+    rows = [
+        ("gm-1", "gp-1", "em-1", "2024-01-01", None),
+        ("gm-2", "gp-1", "em-2", "2024-03-01", None),
+    ]
+    for row in rows:
+        store.memberships.insert(GroupMembership(
+            id=row[0], group_id=row[1], employer_id=row[2], joined_on=row[3],
+            left_on=row[4]))
+
+
 def seed_holidays(store: Store) -> None:
     """The Revenue's calendar, as far ahead as any test needs it."""
     from tare.common.types import Holiday

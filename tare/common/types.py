@@ -693,3 +693,21 @@ class PayAward(Row):
     amount: int
     old_salary: int
     new_salary: int
+
+
+@dataclass
+class EmployerGroup(Row):
+    """Employers that belong together for transfers and for reporting."""
+
+    code: str
+    name: str
+
+
+@dataclass
+class GroupMembership(Row):
+    """One employer's place in one group, and from when."""
+
+    group_id: str
+    employer_id: str
+    joined_on: str
+    left_on: str | None
