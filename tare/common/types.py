@@ -711,3 +711,15 @@ class GroupMembership(Row):
     employer_id: str
     joined_on: str
     left_on: str | None
+
+
+@dataclass
+class ServiceTransfer(Row):
+    """Somebody moving from one employer to another."""
+
+    employee_id: str
+    from_employer_id: str
+    to_employer_id: str
+    kind: str
+    effective_on: str
+    accepted_on: str | None

@@ -829,6 +829,21 @@ def seed_groups(store: Store) -> None:
             left_on=row[4]))
 
 
+def seed_transfers(store: Store) -> None:
+    """One transfer of the business accepted, and one still waiting."""
+    from tare.common.types import ServiceTransfer
+
+    rows = [
+        ("tr-1", "ee-3", "em-1", "em-2", "business", "2025-06-01", "2025-05-20"),
+        ("tr-2", "ee-2", "em-1", "em-2", "business", "2025-10-01", None),
+    ]
+    for row in rows:
+        store.transfers.insert(ServiceTransfer(
+            id=row[0], employee_id=row[1], from_employer_id=row[2],
+            to_employer_id=row[3], kind=row[4], effective_on=row[5],
+            accepted_on=row[6]))
+
+
 def seed_holidays(store: Store) -> None:
     """The Revenue's calendar, as far ahead as any test needs it."""
     from tare.common.types import Holiday

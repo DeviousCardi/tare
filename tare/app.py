@@ -66,6 +66,7 @@ from tare.modules.runs import router as runs_router
 from tare.modules.scales import router as scales_router
 from tare.modules.suspensions import router as suspensions_router
 from tare.modules.thresholds import router as thresholds_router
+from tare.modules.transfers import router as transfers_router
 from tare.modules.timesheets import router as timesheets_router
 from tare.modules.valuations import router as valuations_router
 from tare.modules.employers import router as employers_router
@@ -91,6 +92,7 @@ ROUTERS: list = [
     reviews_router,
     awards_router,
     groups_router,
+    transfers_router,
     sites_router,
     employers_router,
     employees_router,
