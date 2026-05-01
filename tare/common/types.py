@@ -723,3 +723,29 @@ class ServiceTransfer(Row):
     kind: str
     effective_on: str
     accepted_on: str | None
+
+
+@dataclass
+class Engagement(Row):
+    """Somebody working through an intermediary rather than on the payroll."""
+
+    employer_id: str
+    worker_name: str
+    intermediary: str
+    supervised: bool
+    substitution_allowed: bool
+    started_on: str
+    ended_on: str | None
+
+
+@dataclass
+class Determination(Row):
+    """What an engagement was decided to be, and what it is deemed to pay."""
+
+    engagement_id: str
+    employer_id: str
+    inside: bool
+    fee: int
+    allowable_expenses: int
+    deemed_payment: int
+    decided_on: str

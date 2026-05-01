@@ -844,6 +844,37 @@ def seed_transfers(store: Store) -> None:
             accepted_on=row[6]))
 
 
+def seed_engagements(store: Store) -> None:
+    """Two engagements where supervision and substitution point the same way."""
+    from tare.common.types import Engagement
+
+    rows = [
+        ("eg-1", "em-1", "P Vance", "Vance Ltd", True, False, "2025-01-06", None),
+        ("eg-2", "em-1", "R Odell", "Odell Services", False, True, "2025-02-03", "2025-08-29"),
+        ("eg-3", "em-2", "S Petrie", "Petrie Ltd", True, False, "2025-01-06", None),
+    ]
+    for row in rows:
+        store.engagements.insert(Engagement(
+            id=row[0], employer_id=row[1], worker_name=row[2], intermediary=row[3],
+            supervised=row[4], substitution_allowed=row[5], started_on=row[6],
+            ended_on=row[7]))
+
+
+def seed_determinations(store: Store) -> None:
+    """One caught engagement and one outside, at fees that divide evenly."""
+    from tare.common.types import Determination
+
+    rows = [
+        ("dt-1", "eg-1", "em-1", True, 600000, 20000, 550000, "2025-01-20"),
+        ("dt-2", "eg-2", "em-1", False, 400000, 0, 0, "2025-02-10"),
+    ]
+    for row in rows:
+        store.determinations.insert(Determination(
+            id=row[0], engagement_id=row[1], employer_id=row[2], inside=row[3],
+            fee=row[4], allowable_expenses=row[5], deemed_payment=row[6],
+            decided_on=row[7]))
+
+
 def seed_holidays(store: Store) -> None:
     """The Revenue's calendar, as far ahead as any test needs it."""
     from tare.common.types import Holiday

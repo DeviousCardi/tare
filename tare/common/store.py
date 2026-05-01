@@ -12,7 +12,7 @@ kind of row it is at a glance and two tables never collide.
 
 from typing import Callable, Generic, Iterable, TypeVar
 
-from tare.common.types import Band, Contract, Employer, CostCentre, Department, Allowance, ArchiveEntry, AuditEntry, EmployerGroup, GroupMembership, ServiceTransfer, JournalLine, LoanPlan, PayAward, PayReview, Remittance, BenefitAward, Notice, ServiceRecord, BenefitClass, EarningsOrder, ExpenseClaim, Journey, Mandate, PaymentInstruction, PensionScheme, Provider, Grade, ProtectedEarnings, PayCalendar, Premium, Region, Site, PayElement, PayRate, Payslip, PayslipLine, PayrollRun, Absence, DeductionInstruction, Entitlement, LeaveRequest, ScalePoint, Suspension, TimesheetLine, WorkingPattern, Employee, Exemption, Holiday, LevyCode, Position, Relief, Row, Threshold
+from tare.common.types import Band, Contract, Employer, CostCentre, Department, Allowance, ArchiveEntry, AuditEntry, Determination, EmployerGroup, Engagement, GroupMembership, ServiceTransfer, JournalLine, LoanPlan, PayAward, PayReview, Remittance, BenefitAward, Notice, ServiceRecord, BenefitClass, EarningsOrder, ExpenseClaim, Journey, Mandate, PaymentInstruction, PensionScheme, Provider, Grade, ProtectedEarnings, PayCalendar, Premium, Region, Site, PayElement, PayRate, Payslip, PayslipLine, PayrollRun, Absence, DeductionInstruction, Entitlement, LeaveRequest, ScalePoint, Suspension, TimesheetLine, WorkingPattern, Employee, Exemption, Holiday, LevyCode, Position, Relief, Row, Threshold
 
 T = TypeVar("T", bound=Row)
 
@@ -98,6 +98,8 @@ class Store:
         self.groups: Table[EmployerGroup] = Table("gp")
         self.memberships: Table[GroupMembership] = Table("gm")
         self.transfers: Table[ServiceTransfer] = Table("tr")
+        self.engagements: Table[Engagement] = Table("eg")
+        self.determinations: Table[Determination] = Table("dt")
         self.employers: Table[Employer] = Table("em")
         self.employees: Table[Employee] = Table("ee")
         self.contracts: Table[Contract] = Table("ct")

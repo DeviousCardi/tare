@@ -23,6 +23,7 @@ from tare.modules.contracts import router as contracts_router
 from tare.modules.costcentres import router as costcentres_router
 from tare.modules.deductions import router as deductions_router
 from tare.modules.departments import router as departments_router
+from tare.modules.determinations import router as determinations_router
 from tare.modules.elements import router as elements_router
 from tare.modules.employees import router as employees_router
 from tare.modules.grades import router as grades_router
@@ -40,6 +41,7 @@ from tare.modules.journals import router as journals_router
 from tare.modules.journeys import router as journeys_router
 from tare.modules.leave import router as leave_router
 from tare.modules.levycodes import router as levycodes_router
+from tare.modules.engagements import router as engagements_router
 from tare.modules.entitlements import router as entitlements_router
 from tare.modules.exemptions import router as exemptions_router
 from tare.modules.loanplans import router as loanplans_router
@@ -93,6 +95,8 @@ ROUTERS: list = [
     awards_router,
     groups_router,
     transfers_router,
+    engagements_router,
+    determinations_router,
     sites_router,
     employers_router,
     employees_router,
