@@ -749,3 +749,29 @@ class Determination(Row):
     allowable_expenses: int
     deemed_payment: int
     decided_on: str
+
+
+@dataclass
+class Filing(Row):
+    """A return the bureau owes the Revenue for one period."""
+
+    employer_id: str
+    run_id: str
+    period: int
+    period_end: str
+    due_on: str
+    gross: int
+    levy: int
+    contributions: int
+
+
+@dataclass
+class Submission(Row):
+    """One attempt at sending a filing, and what came back."""
+
+    filing_id: str
+    employer_id: str
+    sent_on: str
+    reference: str
+    accepted: bool
+    note: str

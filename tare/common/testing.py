@@ -875,6 +875,37 @@ def seed_determinations(store: Store) -> None:
             decided_on=row[7]))
 
 
+def seed_filings(store: Store) -> None:
+    """A return for each committed run."""
+    from tare.common.types import Filing
+
+    rows = [
+        ("fl-1", "em-1", "rn-1", 1, "2025-05-05", "2025-05-19", 268000, 32000, 12800),
+        ("fl-2", "em-1", "rn-2", 2, "2025-06-05", "2025-06-19", 275299, 11860, 13384),
+        ("fl-3", "em-2", "rn-3", 1, "2025-05-05", "2025-05-19", 346666, 47733, 19093),
+    ]
+    for row in rows:
+        store.filings.insert(Filing(
+            id=row[0], employer_id=row[1], run_id=row[2], period=row[3],
+            period_end=row[4], due_on=row[5], gross=row[6], levy=row[7],
+            contributions=row[8]))
+
+
+def seed_submissions(store: Store) -> None:
+    """One attempt on each filing, each of them taken first time."""
+    from tare.common.types import Submission
+
+    rows = [
+        ("sb-1", "fl-1", "em-1", "2025-05-12", "RTI/2025/0001", True, ""),
+        ("sb-2", "fl-2", "em-1", "2025-06-12", "RTI/2025/0002", True, ""),
+        ("sb-3", "fl-3", "em-2", "2025-05-12", "RTI/2025/0003", True, ""),
+    ]
+    for row in rows:
+        store.submissions.insert(Submission(
+            id=row[0], filing_id=row[1], employer_id=row[2], sent_on=row[3],
+            reference=row[4], accepted=row[5], note=row[6]))
+
+
 def seed_holidays(store: Store) -> None:
     """The Revenue's calendar, as far ahead as any test needs it."""
     from tare.common.types import Holiday
