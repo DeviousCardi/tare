@@ -37,10 +37,12 @@ from tare.modules.allowances import router as allowances_router
 from tare.modules.archive import router as archive_router
 from tare.modules.audit import router as audit_router
 from tare.modules.awards import router as awards_router
+from tare.modules.balances import router as balances_router
 from tare.modules.bands import router as bands_router
 from tare.modules.journals import router as journals_router
 from tare.modules.journeys import router as journeys_router
 from tare.modules.leave import router as leave_router
+from tare.modules.ledger import router as ledger_router
 from tare.modules.levycodes import router as levycodes_router
 from tare.modules.engagements import router as engagements_router
 from tare.modules.entitlements import router as entitlements_router
@@ -60,6 +62,7 @@ from tare.modules.protections import router as protections_router
 from tare.modules.providers import router as providers_router
 from tare.modules.rates import router as rates_router
 from tare.modules.registers import router as registers_router
+from tare.modules.reports import router as reports_router
 from tare.modules.regions import router as regions_router
 from tare.modules.reliefs import router as reliefs_router
 from tare.modules.sites import router as sites_router
@@ -67,12 +70,14 @@ from tare.modules.remittances import router as remittances_router
 from tare.modules.reviews import router as reviews_router
 from tare.modules.runs import router as runs_router
 from tare.modules.scales import router as scales_router
+from tare.modules.statements import router as statements_router
 from tare.modules.submissions import router as submissions_router
 from tare.modules.suspensions import router as suspensions_router
 from tare.modules.thresholds import router as thresholds_router
 from tare.modules.transfers import router as transfers_router
 from tare.modules.timesheets import router as timesheets_router
 from tare.modules.valuations import router as valuations_router
+from tare.modules.validation import router as validation_router
 from tare.modules.employers import router as employers_router
 
 #: Every area's router, in the order the README describes the service.
@@ -101,6 +106,11 @@ ROUTERS: list = [
     determinations_router,
     filings_router,
     submissions_router,
+    balances_router,
+    statements_router,
+    ledger_router,
+    validation_router,
+    reports_router,
     sites_router,
     employers_router,
     employees_router,

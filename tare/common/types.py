@@ -775,3 +775,32 @@ class Submission(Row):
     reference: str
     accepted: bool
     note: str
+
+
+@dataclass
+class CarriedBalance(Row):
+    """What a deduction could not take, held over to a later period."""
+
+    employee_id: str
+    employer_id: str
+    element_id: str
+    year_starts_on: str
+    period: int
+    shortfall: int
+    carried: int
+    cleared_on: str | None
+
+
+@dataclass
+class YearEndStatement(Row):
+    """What one person was paid across a whole pay year."""
+
+    employee_id: str
+    employer_id: str
+    year_starts_on: str
+    year_ends_on: str
+    gross: int
+    levy: int
+    contributions: int
+    net: int
+    issued_on: str | None

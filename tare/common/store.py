@@ -12,7 +12,7 @@ kind of row it is at a glance and two tables never collide.
 
 from typing import Callable, Generic, Iterable, TypeVar
 
-from tare.common.types import Band, Contract, Employer, CostCentre, Department, Allowance, ArchiveEntry, AuditEntry, Determination, EmployerGroup, Engagement, Filing, Submission, GroupMembership, ServiceTransfer, JournalLine, LoanPlan, PayAward, PayReview, Remittance, BenefitAward, Notice, ServiceRecord, BenefitClass, EarningsOrder, ExpenseClaim, Journey, Mandate, PaymentInstruction, PensionScheme, Provider, Grade, ProtectedEarnings, PayCalendar, Premium, Region, Site, PayElement, PayRate, Payslip, PayslipLine, PayrollRun, Absence, DeductionInstruction, Entitlement, LeaveRequest, ScalePoint, Suspension, TimesheetLine, WorkingPattern, Employee, Exemption, Holiday, LevyCode, Position, Relief, Row, Threshold
+from tare.common.types import Band, Contract, Employer, CostCentre, Department, Allowance, ArchiveEntry, AuditEntry, CarriedBalance, Determination, YearEndStatement, EmployerGroup, Engagement, Filing, Submission, GroupMembership, ServiceTransfer, JournalLine, LoanPlan, PayAward, PayReview, Remittance, BenefitAward, Notice, ServiceRecord, BenefitClass, EarningsOrder, ExpenseClaim, Journey, Mandate, PaymentInstruction, PensionScheme, Provider, Grade, ProtectedEarnings, PayCalendar, Premium, Region, Site, PayElement, PayRate, Payslip, PayslipLine, PayrollRun, Absence, DeductionInstruction, Entitlement, LeaveRequest, ScalePoint, Suspension, TimesheetLine, WorkingPattern, Employee, Exemption, Holiday, LevyCode, Position, Relief, Row, Threshold
 
 T = TypeVar("T", bound=Row)
 
@@ -100,6 +100,7 @@ class Store:
         self.transfers: Table[ServiceTransfer] = Table("tr")
         self.engagements: Table[Engagement] = Table("eg")
         self.determinations: Table[Determination] = Table("dt")
+        self.statements: Table[YearEndStatement] = Table("ys")
         self.filings: Table[Filing] = Table("fl")
         self.submissions: Table[Submission] = Table("sb")
         self.employers: Table[Employer] = Table("em")
@@ -130,6 +131,7 @@ class Store:
         self.leave: Table[LeaveRequest] = Table("lv")
         self.entitlements: Table[Entitlement] = Table("en")
         self.suspensions: Table[Suspension] = Table("su")
+        self.balances: Table[CarriedBalance] = Table("bl")
         self.deductions: Table[DeductionInstruction] = Table("dd")
         self.orders: Table[EarningsOrder] = Table("or")
         self.loan_plans: Table[LoanPlan] = Table("lp")

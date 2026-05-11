@@ -906,6 +906,21 @@ def seed_submissions(store: Store) -> None:
             reference=row[4], accepted=row[5], note=row[6]))
 
 
+def seed_balances(store: Store) -> None:
+    """Two balances held over, both well under the carry ceiling."""
+    from tare.common.types import CarriedBalance
+
+    rows = [
+        ("bl-1", "ee-1", "em-1", "el-4", "2025-04-06", 3, 1500, 1500, None),
+        ("bl-2", "ee-2", "em-1", "el-4", "2025-04-06", 2, 900, 900, "2025-07-28"),
+    ]
+    for row in rows:
+        store.balances.insert(CarriedBalance(
+            id=row[0], employee_id=row[1], employer_id=row[2], element_id=row[3],
+            year_starts_on=row[4], period=row[5], shortfall=row[6], carried=row[7],
+            cleared_on=row[8]))
+
+
 def seed_holidays(store: Store) -> None:
     """The Revenue's calendar, as far ahead as any test needs it."""
     from tare.common.types import Holiday
