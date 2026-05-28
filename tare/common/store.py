@@ -89,6 +89,7 @@ class Store:
         self._build()
 
     def _build(self) -> None:
+        self._unwritten()
         # Grouped the way the README describes the service, so a reader looking
         # for a table looks in the obvious place.
 
@@ -162,6 +163,35 @@ class Store:
         self.thresholds: Table[Threshold] = Table("th")
         self.reliefs: Table[Relief] = Table("rl")
         self.exemptions: Table[Exemption] = Table("ex")
+
+    def _unwritten(self) -> None:
+        """Rows the warehouse loads that no area writes yet.
+
+        Each shape has been agreed and each is read back through `registry`.
+        The work that would put a row in one is not built.
+        """
+        from tare.common import types as t
+
+        self.attachments: Table = Table("at")
+        self.averaged_pay: Table = Table("ap")
+        self.sick_periods: Table = Table("sk")
+        self.sacrifices: Table = Table("sf")
+        self.banding_bases: Table = Table("bb")
+        self.back_pay: Table = Table("bp")
+        self.termination_payments: Table = Table("tp")
+        self.premium_entries: Table = Table("pe")
+        self.apportionments: Table = Table("aq")
+        self.recovery_plans: Table = Table("rp")
+        self.enrolments: Table = Table("en-a")
+        self.mileage_claims: Table = Table("mc")
+        self.payrolled_benefits: Table = Table("pb")
+        self.loan_deductions: Table = Table("ld")
+        self.instruction_files: Table = Table("if")
+        self.statement_lines: Table = Table("sl")
+        self.transfer_records: Table = Table("tc")
+        self.deemed_payments: Table = Table("dp-a")
+        self.carried_deductions: Table = Table("cd")
+        self.award_lines: Table = Table("al-a")
 
     def reset(self) -> None:
         """Empty every table. The suite builds a fresh store instead."""

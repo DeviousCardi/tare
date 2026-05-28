@@ -804,3 +804,247 @@ class YearEndStatement(Row):
     contributions: int
     net: int
     issued_on: str | None
+
+
+# ---------------------------------------------------------------------------
+# Rows the warehouse loads that no area writes yet.
+#
+# Each of these is a shape the bureau has agreed with the Revenue and with the
+# employers, and each is read back through `registry`. Nothing in the service
+# puts a row in one: the work that would is not built.
+# ---------------------------------------------------------------------------
+
+
+@dataclass
+class Attachment(Row):
+    """Money taken under a court order, as it fell in one period."""
+
+    employee_id: str
+    order_id: str
+    period: int
+    year_starts_on: str
+    asked: int
+    taken: int
+    protected_shortfall: int
+
+
+@dataclass
+class AveragedPay(Row):
+    """The average a week of leave is paid at, over a reference window."""
+
+    employee_id: str
+    reference_from: str
+    reference_to: str
+    weeks_counted: int
+    weeks_skipped: int
+    weekly_average: int
+
+
+@dataclass
+class SickPeriod(Row):
+    """A spell of sickness as statutory pay sees it."""
+
+    employee_id: str
+    absence_id: str
+    waiting_days: int
+    payable_days: int
+    weekly_rate: int
+    paid: int
+
+
+@dataclass
+class SacrificeAgreement(Row):
+    """Pay somebody has given up, and what it buys."""
+
+    employee_id: str
+    element_id: str
+    amount: int
+    towards: str
+    starts_on: str
+    ends_on: str | None
+
+
+@dataclass
+class BandingBasis(Row):
+    """Which basis somebody's contributions are worked out on."""
+
+    employee_id: str
+    year_starts_on: str
+    basis: str
+    changed_in_period: int | None
+
+
+@dataclass
+class BackPayAward(Row):
+    """An award reaching back over periods already closed."""
+
+    employee_id: str
+    review_id: str
+    from_period: int
+    to_period: int
+    old_rate: int
+    new_rate: int
+    arrears: int
+
+
+@dataclass
+class TerminationPayment(Row):
+    """What somebody is owed on the way out."""
+
+    employee_id: str
+    left_on: str
+    notice_weeks: int
+    notice_pay: int
+    redundancy: int
+    taxable_part: int
+    free_part: int
+
+
+@dataclass
+class PremiumEntry(Row):
+    """Hours worked at a premium, and what the uplift came to."""
+
+    employee_id: str
+    premium_id: str
+    worked_on: str
+    hours: int
+    uplift: int
+
+
+@dataclass
+class Apportionment(Row):
+    """One cost centre's share of a run."""
+
+    run_id: str
+    cost_centre_id: str
+    weight: int
+    share: int
+
+
+@dataclass
+class RecoveryPlan(Row):
+    """An overpayment being taken back over later periods."""
+
+    employee_id: str
+    overpaid_in_period: int
+    year_starts_on: str
+    total: int
+    per_period: int
+    recovered: int
+
+
+@dataclass
+class EnrolmentAssessment(Row):
+    """What a scheme assessment decided about somebody."""
+
+    employee_id: str
+    scheme_id: str
+    assessed_on: str
+    qualifying_pay: int
+    outcome: str
+    postponed_to: str | None
+
+
+@dataclass
+class MileageClaim(Row):
+    """A run of journeys claimed together."""
+
+    employee_id: str
+    from_day: str
+    to_day: str
+    miles: int
+    higher_rate_miles: int
+    lower_rate_miles: int
+    paid: int
+
+
+@dataclass
+class PayrolledBenefit(Row):
+    """A benefit taken through the payroll rather than reported after the year."""
+
+    employee_id: str
+    award_id: str
+    period: int
+    year_starts_on: str
+    cash_equivalent: int
+    contribution: int
+
+
+@dataclass
+class LoanDeduction(Row):
+    """A graduate contribution as it fell in one period."""
+
+    employee_id: str
+    plan_id: str
+    period: int
+    year_starts_on: str
+    pay_above_threshold: int
+    taken: int
+
+
+@dataclass
+class PaymentInstructionFile(Row):
+    """A file of payment instructions handed to the bank."""
+
+    run_id: str
+    employer_id: str
+    reference: str
+    instructions: int
+    total: int
+    sent_on: str | None
+
+
+@dataclass
+class YearEndStatementLine(Row):
+    """One line of a year-end statement, as the Revenue wants it broken down."""
+
+    statement_id: str
+    element_code: str
+    description: str
+    amount: int
+
+
+@dataclass
+class ServiceTransferRecord(Row):
+    """What a transfer carried across with the person."""
+
+    transfer_id: str
+    employee_id: str
+    continuous_from: str
+    leave_carried: int
+    balances_carried: int
+
+
+@dataclass
+class DeemedPayment(Row):
+    """A deemed payment as it fell in one period."""
+
+    determination_id: str
+    period: int
+    year_starts_on: str
+    fee: int
+    allowance: int
+    deemed: int
+
+
+@dataclass
+class CarriedDeduction(Row):
+    """A deduction carried into a later period, as it was finally taken."""
+
+    balance_id: str
+    period: int
+    year_starts_on: str
+    carried_in: int
+    taken: int
+    carried_out: int
+
+
+@dataclass
+class PayAwardLine(Row):
+    """One person's line in a review, before the award is settled."""
+
+    review_id: str
+    employee_id: str
+    proposed_basis: str
+    proposed_amount: int
+    approved: bool
