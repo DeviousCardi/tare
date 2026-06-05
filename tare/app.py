@@ -64,6 +64,7 @@ from tare.modules.rates import router as rates_router
 from tare.modules.registers import router as registers_router
 from tare.modules.reports import router as reports_router
 from tare.modules.regions import router as regions_router
+from tare.modules.registry import router as registry_router
 from tare.modules.reliefs import router as reliefs_router
 from tare.modules.sites import router as sites_router
 from tare.modules.remittances import router as remittances_router
@@ -111,6 +112,7 @@ ROUTERS: list = [
     ledger_router,
     validation_router,
     reports_router,
+    registry_router,
     sites_router,
     employers_router,
     employees_router,
