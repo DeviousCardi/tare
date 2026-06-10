@@ -34,9 +34,39 @@ jobs:
         env:
           TZ: UTC
 
+  sweeps:
+    name: sweeps
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: pyproject.toml
+
+      - name: Install
+        run: pip install -e ".[dev]"
+
+      - name: No test name is used twice
+        run: |
+          pytest -q --collect-only 2>/dev/null | grep '::' \
+            | sed 's|/|.|g; s|\.py::|.|' | sort > /tmp/ids
+          test "$(wc -l < /tmp/ids)" = "$(sort -u /tmp/ids | wc -l)" \
+            || { echo "duplicate test ids:"; sort /tmp/ids | uniq -d; exit 1; }
+
+      - name: Nothing in the service reads the clock
+        run: |
+          ! grep -rnE "datetime\.now|date\.today|time\.time|utcnow" tare/ \
+            --exclude-dir=__pycache__
+
+      - name: Nothing names a defect and its remedy
+        run: "! grep -rn 'TODO\|FIXME\|HACK' tare/ --exclude-dir=__pycache__"
+
   image:
     name: image
-    needs: test
+    needs: [test, sweeps]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
