@@ -73,7 +73,38 @@ row, and the one in force on a day is the latest that had already taken effect.
 
 ## What it covers
 
+Who we run payroll for, and who they employ — `employers`, `employees`,
+`contracts`, `positions`, `departments`, `costcentres`, `continuity`,
+`transfers`, `groups`, `regions`, `sites`.
+
+What people are due — `elements`, `rates`, `scales`, `grades`, `premiums`,
+`allowances`, `reviews`, `awards`.
+
+What they actually did — `calendars`, `patterns`, `timesheets`, `absences`,
+`leave`, `entitlements`, `journeys`, `expenses`.
+
+What the Revenue publishes — `levycodes`, `bands`, `thresholds`, `reliefs`,
+`exemptions`, `holidays`.
+
+Working it out — `gross`, `net`, `runs`, `payslips`, `registers`.
+
+What comes off — `deductions`, `orders`, `protections`, `suspensions`,
+`balances`, `loanplans`, `pensions`, `benefits`, `valuations`.
+
+Getting it out of the door — `mandates`, `payments`, `providers`,
+`remittances`.
+
+Answering to somebody else — `filings`, `submissions`, `statements`,
+`journals`, `ledger`, `engagements`, `determinations`, `reports`, `validation`,
+`audit`, `notices`, `archive`, `registry`.
+
 Everything shared sits in `tare/common`: the row types, the in-memory store,
 money and date arithmetic, the operator, and the seed helpers the suite is
 built on. Each area under `tare/modules` is a router, its request and response
-models, its rules and its service.
+models, its rules and its service — the rules take no store and no operator, so
+the arithmetic can be read and checked on its own.
+
+The warehouse also loads a good deal the service does not write for itself:
+figures agreed with the Revenue, working papers from areas still done on paper,
+and rows an employer's own systems push across. `registry` reads those back and
+changes none of them.
