@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "tare"
-version = "0.1.0"
+version = "1.0.0"
 description = "Payroll bureau back office"
 authors = [{ name = "Tare Bureau Services" }]
 requires-python = ">=3.12"

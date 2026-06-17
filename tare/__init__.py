@@ -5,4 +5,4 @@ each person earned, what the Revenue is owed, what may be taken off, and what
 is left to pay.
 """
 
-__version__ = "0.1.0"
+__version__ = "1.0.0"
