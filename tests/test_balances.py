@@ -2,7 +2,7 @@
 
 import pytest
 
-from tare.common.errors import Conflict, NotFound, Refused
+from tare.common.errors import Conflict, NotFound
 from tare.common.testing import (
     BUREAU, MANAGER, build_client, build_store, headers, seed_balances, seed_elements,
     seed_employees, seed_employers,

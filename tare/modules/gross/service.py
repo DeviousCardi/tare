@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from tare.common.errors import not_found, refuse
+from tare.common.errors import refuse
 from tare.common.store import Store
 from tare.common.types import Operator
 from tare.modules.calendars.rules import period_window

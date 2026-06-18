@@ -4,7 +4,6 @@ from __future__ import annotations
 
 from tare.common.dates import compare_dates
 from tare.common.errors import conflict, not_found, refuse
-from tare.common.operator import visible_to
 from tare.common.paging import page
 from tare.common.store import Store
 from tare.common.types import Operator, ServiceTransfer

@@ -1,7 +1,7 @@
 """What a benefit is worth to the person who has it."""
 
 from tare.common.dates import compare_dates, within_window
-from tare.common.types import BenefitAward, BenefitClass
+from tare.common.types import BenefitAward
 
 
 def sort_by_start(rows: list[BenefitAward]) -> list[BenefitAward]:

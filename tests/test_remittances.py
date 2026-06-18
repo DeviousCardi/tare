@@ -9,7 +9,7 @@ from tare.common.testing import (
 )
 from tare.common.types import PayrollRun, Remittance
 from tare.modules.remittances.rules import (
-    DUE_IN_DAYS, days_to_go, due_on_for, is_overdue, is_waiting, owed_to, sort_by_due,
+    days_to_go, due_on_for, is_overdue, is_waiting, owed_to, sort_by_due,
     waiting,
 )
 from tare.modules.remittances.schemas import (

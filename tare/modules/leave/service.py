@@ -13,7 +13,7 @@ from tare.modules.employees.service import EmployeesService
 from tare.modules.employers.schemas import a_day
 from tare.modules.holidays.service import HolidaysService
 from tare.modules.leave.rules import (
-    ASKED, GRANTED, STATUSES, clashes_with, covers, days_of, is_open, sort_by_start,
+    ASKED, STATUSES, clashes_with, covers, days_of, is_open, sort_by_start,
     taken_between,
 )
 from tare.modules.leave.schemas import AskForLeave, DecideLeave, ListLeave

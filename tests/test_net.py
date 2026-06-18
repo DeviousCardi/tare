@@ -8,7 +8,7 @@ from tare.common.testing import (
     seed_contracts, seed_deductions, seed_elements, seed_employees, seed_employers,
     seed_exemptions, seed_levy_codes, seed_rates, seed_timesheets,
 )
-from tare.modules.net.rules import Worked, assemble, levyable_pay, net_pay, take_home_share
+from tare.modules.net.rules import assemble, levyable_pay, net_pay, take_home_share
 from tare.modules.net.service import NetService
 
 

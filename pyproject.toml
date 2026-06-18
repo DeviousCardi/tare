@@ -18,10 +18,20 @@ dependencies = [
 dev = [
     "httpx==0.28.1",
     "pytest==8.3.4",
+    "ruff==0.8.4",
 ]
 
 [tool.setuptools.packages.find]
 include = ["tare*"]
+
+[tool.ruff]
+line-length = 92
+target-version = "py312"
+
+[tool.ruff.lint]
+# F catches what actually breaks: names that are not there, imports nobody
+# uses. The rest is taste and the reviews cover it.
+select = ["F"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

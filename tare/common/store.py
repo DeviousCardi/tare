@@ -170,7 +170,6 @@ class Store:
         Each shape has been agreed and each is read back through `registry`.
         The work that would put a row in one is not built.
         """
-        from tare.common import types as t
 
         self.attachments: Table = Table("at")
         self.averaged_pay: Table = Table("ap")

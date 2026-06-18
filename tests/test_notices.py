@@ -9,7 +9,7 @@ from tare.common.testing import (
 )
 from tare.common.types import Notice
 from tare.modules.notices.rules import (
-    PROMPT_DAYS, days_waiting, is_late, is_waiting, sort_by_raised, waiting,
+    days_waiting, is_late, is_waiting, sort_by_raised, waiting,
 )
 from tare.modules.notices.schemas import ListNotices, RaiseNotice, SendNotice
 from tare.modules.notices.service import NoticesService
