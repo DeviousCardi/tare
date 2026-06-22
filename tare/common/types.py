@@ -806,6 +806,40 @@ class YearEndStatement(Row):
     issued_on: str | None
 
 
+@dataclass
+class LeaveAccrual(Row):
+    """Leave earned in one period by somebody who accrues rather than is granted.
+
+    Casual and part-year people do not get a year's entitlement up front; they
+    earn it as they work, and what they have earned is the sum of the periods
+    behind them.
+    """
+
+    employee_id: str
+    employer_id: str
+    year_starts_on: str
+    period: int
+    hours_worked: int
+    hours_earned: int
+
+
+@dataclass
+class ImportBatch(Row):
+    """A batch of rows an employer's own systems pushed across.
+
+    The bureau takes the file, counts what it holds, and says what it could and
+    could not read. Nothing is applied until the batch is accepted.
+    """
+
+    employer_id: str
+    kind: str
+    reference: str
+    received_on: str
+    rows_offered: int
+    rows_read: int
+    status: str
+
+
 # ---------------------------------------------------------------------------
 # Rows the warehouse loads that no area writes yet.
 #

@@ -921,6 +921,39 @@ def seed_balances(store: Store) -> None:
             cleared_on=row[8]))
 
 
+def seed_accruals(store: Store) -> None:
+    """Three periods of accrual for the part-year joiner."""
+    from tare.common.types import LeaveAccrual
+
+    rows = [
+        ("ac-1", "ee-2", "em-1", "2025-04-06", 4, 160, 19),
+        ("ac-2", "ee-2", "em-1", "2025-04-06", 5, 152, 18),
+        ("ac-3", "ee-2", "em-1", "2025-04-06", 6, 168, 20),
+    ]
+    for row in rows:
+        store.accruals.insert(LeaveAccrual(
+            id=row[0], employee_id=row[1], employer_id=row[2],
+            year_starts_on=row[3], period=row[4], hours_worked=row[5],
+            hours_earned=row[6]))
+
+
+def seed_imports(store: Store) -> None:
+    """One batch accepted, one still waiting, one too broken to apply."""
+    from tare.common.types import ImportBatch
+
+    rows = [
+        ("im-1", "em-1", "timesheets", "TS/2025/06", "2025-06-30", 240, 240, "accepted"),
+        ("im-2", "em-1", "timesheets", "TS/2025/07", "2025-07-31", 250, 249, "received"),
+        ("im-3", "em-1", "starters", "ST/2025/07", "2025-07-31", 40, 30, "received"),
+        ("im-4", "em-2", "timesheets", "TS/2025/06B", "2025-06-30", 100, 100, "accepted"),
+    ]
+    for row in rows:
+        store.imports.insert(ImportBatch(
+            id=row[0], employer_id=row[1], kind=row[2], reference=row[3],
+            received_on=row[4], rows_offered=row[5], rows_read=row[6],
+            status=row[7]))
+
+
 def seed_holidays(store: Store) -> None:
     """The Revenue's calendar, as far ahead as any test needs it."""
     from tare.common.types import Holiday

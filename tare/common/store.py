@@ -12,7 +12,7 @@ kind of row it is at a glance and two tables never collide.
 
 from typing import Callable, Generic, Iterable, TypeVar
 
-from tare.common.types import Band, Contract, Employer, CostCentre, Department, Allowance, ArchiveEntry, AuditEntry, CarriedBalance, Determination, YearEndStatement, EmployerGroup, Engagement, Filing, Submission, GroupMembership, ServiceTransfer, JournalLine, LoanPlan, PayAward, PayReview, Remittance, BenefitAward, Notice, ServiceRecord, BenefitClass, EarningsOrder, ExpenseClaim, Journey, Mandate, PaymentInstruction, PensionScheme, Provider, Grade, ProtectedEarnings, PayCalendar, Premium, Region, Site, PayElement, PayRate, Payslip, PayslipLine, PayrollRun, Absence, DeductionInstruction, Entitlement, LeaveRequest, ScalePoint, Suspension, TimesheetLine, WorkingPattern, Employee, Exemption, Holiday, LevyCode, Position, Relief, Row, Threshold
+from tare.common.types import Band, Contract, Employer, CostCentre, Department, Allowance, ArchiveEntry, AuditEntry, CarriedBalance, Determination, YearEndStatement, EmployerGroup, Engagement, Filing, Submission, GroupMembership, ServiceTransfer, JournalLine, LoanPlan, PayAward, PayReview, Remittance, BenefitAward, Notice, ServiceRecord, BenefitClass, EarningsOrder, ExpenseClaim, Journey, Mandate, PaymentInstruction, PensionScheme, Provider, Grade, ProtectedEarnings, PayCalendar, Premium, Region, Site, PayElement, PayRate, Payslip, PayslipLine, PayrollRun, Absence, DeductionInstruction, Entitlement, ImportBatch, LeaveAccrual, LeaveRequest, ScalePoint, Suspension, TimesheetLine, WorkingPattern, Employee, Exemption, Holiday, LevyCode, Position, Relief, Row, Threshold
 
 T = TypeVar("T", bound=Row)
 
@@ -131,6 +131,8 @@ class Store:
         self.absences: Table[Absence] = Table("ab")
         self.leave: Table[LeaveRequest] = Table("lv")
         self.entitlements: Table[Entitlement] = Table("en")
+        self.accruals: Table[LeaveAccrual] = Table("ac")
+        self.imports: Table[ImportBatch] = Table("im")
         self.suspensions: Table[Suspension] = Table("su")
         self.balances: Table[CarriedBalance] = Table("bl")
         self.deductions: Table[DeductionInstruction] = Table("dd")
