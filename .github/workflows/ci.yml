@@ -65,7 +65,8 @@ jobs:
             --exclude-dir=__pycache__
 
       - name: Nothing names a defect and its remedy
-        run: "! grep -rn 'TODO\|FIXME\|HACK' tare/ --exclude-dir=__pycache__"
+        run: |
+          ! grep -rnE 'TODO|FIXME|HACK' tare/ --exclude-dir=__pycache__
 
   image:
     name: image
