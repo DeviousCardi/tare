@@ -12,7 +12,24 @@ kind of row it is at a glance and two tables never collide.
 
 from typing import Callable, Generic, Iterable, TypeVar
 
-from tare.common.types import Band, Contract, Employer, CostCentre, Department, Allowance, ArchiveEntry, AuditEntry, CarriedBalance, Determination, YearEndStatement, EmployerGroup, Engagement, Filing, Submission, GroupMembership, ServiceTransfer, JournalLine, LoanPlan, PayAward, PayReview, Remittance, BenefitAward, Notice, ServiceRecord, BenefitClass, EarningsOrder, ExpenseClaim, Journey, Mandate, PaymentInstruction, PensionScheme, Provider, Grade, ProtectedEarnings, PayCalendar, Premium, Region, Site, PayElement, PayRate, Payslip, PayslipLine, PayrollRun, Absence, DeductionInstruction, Entitlement, ImportBatch, LeaveAccrual, LeaveRequest, ScalePoint, Suspension, TimesheetLine, WorkingPattern, Employee, Exemption, Holiday, LevyCode, Position, Relief, Row, Threshold
+from tare.common.types import (
+    Absence, Allowance, ArchiveEntry, AuditEntry,
+    Band, BenefitAward, BenefitClass, CarriedBalance,
+    Contract, CostCentre, DeductionInstruction, Department,
+    Determination, EarningsOrder, Employee, Employer,
+    EmployerGroup, Engagement, Entitlement, Exemption,
+    ExpenseClaim, Filing, Grade, GroupMembership,
+    Holiday, ImportBatch, JournalLine, Journey,
+    LeaveAccrual, LeaveRequest, LevyCode, LoanPlan,
+    Mandate, Notice, PayAward, PayCalendar,
+    PayElement, PayRate, PayReview, PaymentInstruction,
+    PayrollRun, Payslip, PayslipLine, PensionScheme,
+    Position, Premium, ProtectedEarnings, Provider,
+    Region, Relief, Remittance, Row,
+    ScalePoint, ServiceRecord, ServiceTransfer, Site,
+    Submission, Suspension, Threshold, TimesheetLine,
+    WorkingPattern, YearEndStatement,
+)
 
 T = TypeVar("T", bound=Row)
 
