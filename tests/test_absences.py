@@ -215,7 +215,8 @@ def test_an_absence_cannot_start_when_somebody_was_not_in_post():
 
 
 def test_an_absence_is_amended_to_end_later():
-    assert service().amend(MANAGER, "ab-3", AmendAbsence(ends_on="2025-09-12")).ends_on == "2025-09-12"
+    assert service() \
+        .amend(MANAGER, "ab-3", AmendAbsence(ends_on="2025-09-12")).ends_on == "2025-09-12"
 
 
 def test_amending_an_absence_into_another_is_refused():

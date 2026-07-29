@@ -76,7 +76,8 @@ def test_a_cumulative_code_gives_the_whole_allowance_by_the_last_period():
 
 
 def test_a_period_code_gives_only_its_own_periods_share():
-    assert free_pay_for_period(a_code(basis="period", annual_allowance=1200000), "monthly", 6) == 100000
+    row = a_code(basis="period", annual_allowance=1200000)
+    assert free_pay_for_period(row, "monthly", 6) == 100000
 
 
 def test_a_year_of_a_period_code_still_comes_to_the_allowance():

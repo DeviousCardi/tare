@@ -33,7 +33,8 @@ def an_exemption(**kw) -> Exemption:
 
 
 def test_exemptions_read_earliest_first():
-    rows = sort_by_start([an_exemption(starts_on="2025-06-01"), an_exemption(starts_on="2025-01-01")])
+    rows = sort_by_start([an_exemption(starts_on="2025-06-01"),
+                          an_exemption(starts_on="2025-01-01")])
     assert [row.starts_on for row in rows] == ["2025-01-01", "2025-06-01"]
 
 
@@ -165,7 +166,8 @@ def test_a_manager_cannot_grant_an_exemption_at_another_employer():
 
 
 def test_an_exemption_is_ended():
-    assert service().end(MANAGER, "ex-1", EndExemption(ends_on="2025-09-30")).ends_on == "2025-09-30"
+    assert service() \
+        .end(MANAGER, "ex-1", EndExemption(ends_on="2025-09-30")).ends_on == "2025-09-30"
 
 
 def test_an_exemption_cannot_end_twice():
@@ -202,7 +204,8 @@ def test_the_route_reports_what_somebody_is_exempt_from():
 
 
 def test_the_route_reads_one_exemption():
-    assert client().get("/exemptions/ex-1", headers=headers(MANAGER)).json()["kind"] == "contributions"
+    assert client() \
+        .get("/exemptions/ex-1", headers=headers(MANAGER)).json()["kind"] == "contributions"
 
 
 def test_the_route_answers_404_for_an_exemption_nobody_granted():

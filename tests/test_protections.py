@@ -136,7 +136,8 @@ def test_a_floor_cannot_end_before_it_starts():
 
 
 def test_a_floor_is_ended():
-    assert service().end(MANAGER, "pr-1", EndProtection(ends_on="2025-09-30")).ends_on == "2025-09-30"
+    assert service() \
+        .end(MANAGER, "pr-1", EndProtection(ends_on="2025-09-30")).ends_on == "2025-09-30"
 
 
 def test_a_floor_cannot_end_twice():

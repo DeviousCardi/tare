@@ -3,7 +3,15 @@
 import pytest
 
 from tare.common.errors import Conflict, NotFound, Refused
-from tare.common.testing import BUREAU, CLERK, MANAGER, build_client, build_store, headers, seed_employers
+from tare.common.testing import (
+    BUREAU,
+    CLERK,
+    MANAGER,
+    build_client,
+    build_store,
+    headers,
+    seed_employers,
+)
 from tare.modules.employers.rules import is_open_on, next_reference, pay_day_of, sort_by_reference
 from tare.modules.employers.schemas import CloseEmployer, ListEmployers, TakeOnEmployer
 from tare.modules.employers.service import EmployersService
@@ -32,11 +40,13 @@ def test_the_first_employer_taken_on_is_numbered_one():
 
 
 def test_the_next_reference_follows_the_highest_already_issued():
-    assert next_reference([an_employer(reference="E-0001"), an_employer(reference="E-0004")]) == "E-0005"
+    rows = [an_employer(reference="E-0001"), an_employer(reference="E-0004")]
+    assert next_reference(rows) == "E-0005"
 
 
 def test_a_closed_employer_does_not_free_its_reference_for_reuse():
-    rows = [an_employer(reference="E-0001"), an_employer(reference="E-0002", closed_on="2024-06-01")]
+    rows = [an_employer(reference="E-0001"),
+            an_employer(reference="E-0002", closed_on="2024-06-01")]
     assert next_reference(rows) == "E-0003"
 
 
@@ -158,7 +168,8 @@ def test_a_reference_already_on_the_books_is_refused():
 
 
 def test_the_bureau_closes_an_employer():
-    assert service().close(BUREAU, "em-1", CloseEmployer(closed_on="2025-06-30")).closed_on == "2025-06-30"
+    assert service() \
+        .close(BUREAU, "em-1", CloseEmployer(closed_on="2025-06-30")).closed_on == "2025-06-30"
 
 
 def test_an_employer_cannot_be_closed_twice():

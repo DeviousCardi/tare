@@ -110,7 +110,8 @@ def test_an_engagement_is_opened():
 
 
 def test_an_engagement_is_ended():
-    assert service().end(MANAGER, "eg-1", EndEngagement(ended_on="2025-12-31")).ended_on == "2025-12-31"
+    assert service() \
+        .end(MANAGER, "eg-1", EndEngagement(ended_on="2025-12-31")).ended_on == "2025-12-31"
 
 
 def test_an_engagement_cannot_end_twice():

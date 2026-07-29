@@ -30,8 +30,9 @@ def rows():
 
 
 def test_departments_read_in_code_order():
-    ordered = sort_by_code([Department(id="a", employer_id="em-1", code="B", name="b", parent_id=None),
-                            Department(id="b", employer_id="em-1", code="A", name="a", parent_id=None)])
+    ordered = sort_by_code([
+        Department(id="a", employer_id="em-1", code="B", name="b", parent_id=None),
+        Department(id="b", employer_id="em-1", code="A", name="a", parent_id=None)])
     assert [row.code for row in ordered] == ["A", "B"]
 
 

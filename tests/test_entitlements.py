@@ -95,7 +95,10 @@ def test_taking_more_than_was_available_still_leaves_nothing_rather_than_less():
 
 
 def test_what_carries_forward_is_capped_at_what_the_rules_allow():
-    assert carry_forward(an_entitlement(days=25, carried_in=3), "2020-04-06", None, 0) == MOST_CARRIED
+    assert (
+        carry_forward(an_entitlement(days=25, carried_in=3), "2020-04-06", None, 0)
+        == MOST_CARRIED
+    )
 
 
 def test_less_than_the_cap_carries_forward_whole():

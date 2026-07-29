@@ -119,7 +119,8 @@ def test_a_manager_cannot_open_a_review_at_another_employer():
 
 
 def test_a_review_is_closed():
-    assert service().close(MANAGER, "rv-1", CloseReview(closed_on="2025-04-30")).closed_on == "2025-04-30"
+    assert service() \
+        .close(MANAGER, "rv-1", CloseReview(closed_on="2025-04-30")).closed_on == "2025-04-30"
 
 
 def test_a_review_cannot_be_closed_twice():

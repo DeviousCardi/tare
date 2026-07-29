@@ -176,7 +176,8 @@ def test_a_reference_already_on_the_payroll_is_refused():
 
 
 def test_somebody_leaves_the_payroll():
-    assert service().leave(MANAGER, "ee-1", LeaveEmployee(left_on="2025-09-30")).left_on == "2025-09-30"
+    assert service() \
+        .leave(MANAGER, "ee-1", LeaveEmployee(left_on="2025-09-30")).left_on == "2025-09-30"
 
 
 def test_nobody_leaves_twice():
@@ -190,7 +191,8 @@ def test_nobody_leaves_before_they_joined():
 
 
 def test_a_levy_code_can_be_changed():
-    assert service().change_levy_code(MANAGER, "ee-1", ChangeLevyCode(levy_code="L3")).levy_code == "L3"
+    assert service() \
+        .change_levy_code(MANAGER, "ee-1", ChangeLevyCode(levy_code="L3")).levy_code == "L3"
 
 
 def test_a_manager_cannot_change_a_levy_code_at_another_employer():

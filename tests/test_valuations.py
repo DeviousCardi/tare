@@ -128,7 +128,8 @@ def test_a_code_the_employer_already_uses_is_refused():
 
 
 def test_a_class_is_revalued():
-    assert service().revalue(MANAGER, "bc-1", RevalueClass(annual_value=766500)).annual_value == 766500
+    assert service() \
+        .revalue(MANAGER, "bc-1", RevalueClass(annual_value=766500)).annual_value == 766500
 
 
 def test_what_a_class_is_worth_over_a_run_of_days_is_reported():

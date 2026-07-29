@@ -156,7 +156,8 @@ def test_a_settled_plan_cannot_collect_again():
 
 
 def test_a_plan_is_settled():
-    assert service().settle(MANAGER, "lp-1", SettlePlan(settled_on="2025-09-30")).settled_on == "2025-09-30"
+    assert service() \
+        .settle(MANAGER, "lp-1", SettlePlan(settled_on="2025-09-30")).settled_on == "2025-09-30"
 
 
 def test_a_plan_cannot_be_settled_twice():

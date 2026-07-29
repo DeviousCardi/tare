@@ -135,7 +135,8 @@ def test_a_second_remittance_to_one_provider_on_one_run_is_refused():
 
 
 def test_a_remittance_goes():
-    assert service().send(MANAGER, "rm-2", SendRemittance(sent_on="2025-06-20")).sent_on == "2025-06-20"
+    assert service() \
+        .send(MANAGER, "rm-2", SendRemittance(sent_on="2025-06-20")).sent_on == "2025-06-20"
 
 
 def test_a_remittance_cannot_go_twice():

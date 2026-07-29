@@ -5,7 +5,13 @@ import pytest
 from tare.common.errors import Conflict, NotFound, Refused
 from tare.common.testing import BUREAU, MANAGER, build_client, build_store, headers, seed_bands
 from tare.common.types import Band
-from tare.modules.bands.rules import band_holding, bands_for, contribution_on, sort_by_floor, width_of
+from tare.modules.bands.rules import (
+    band_holding,
+    bands_for,
+    contribution_on,
+    sort_by_floor,
+    width_of,
+)
 from tare.modules.bands.schemas import ListBands, PublishBand
 from tare.modules.bands.service import BandsService
 

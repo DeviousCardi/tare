@@ -129,7 +129,8 @@ def test_a_second_open_run_is_refused():
 
 
 def test_a_run_of_service_is_ended():
-    assert service().end(MANAGER, "sr-1", EndService(ended_on="2025-09-30")).ended_on == "2025-09-30"
+    assert service() \
+        .end(MANAGER, "sr-1", EndService(ended_on="2025-09-30")).ended_on == "2025-09-30"
 
 
 def test_a_run_of_service_cannot_end_twice():

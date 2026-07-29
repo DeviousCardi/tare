@@ -195,7 +195,8 @@ def test_the_route_lists_posts():
 
 
 def test_the_route_reads_one_post():
-    assert client().get("/positions/ps-1", headers=headers(MANAGER)).json()["title"] == "Bench joiner"
+    assert client() \
+        .get("/positions/ps-1", headers=headers(MANAGER)).json()["title"] == "Bench joiner"
 
 
 def test_the_route_reports_a_headcount():

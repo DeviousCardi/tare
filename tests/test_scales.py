@@ -3,7 +3,14 @@
 import pytest
 
 from tare.common.errors import Conflict, NotFound, Refused
-from tare.common.testing import BUREAU, MANAGER, build_client, build_store, headers, seed_scale_points
+from tare.common.testing import (
+    BUREAU,
+    MANAGER,
+    build_client,
+    build_store,
+    headers,
+    seed_scale_points,
+)
 from tare.modules.scales.rules import arrears_for, points_of, sort_by_point, step_up, value_at
 from tare.modules.scales.schemas import ListScalePoints, PublishScalePoint
 from tare.modules.scales.service import ScalesService

@@ -49,11 +49,13 @@ def test_a_contract_does_not_govern_the_day_before_it_started():
 
 
 def test_a_contract_still_governs_the_day_it_ended():
-    assert in_force_on(a_contract(started_on="2024-01-01", ended_on="2024-06-30"), "2024-06-30") is True
+    row = a_contract(started_on="2024-01-01", ended_on="2024-06-30")
+    assert in_force_on(row, "2024-06-30") is True
 
 
 def test_a_contract_does_not_govern_the_day_after_it_ended():
-    assert in_force_on(a_contract(started_on="2024-01-01", ended_on="2024-06-30"), "2024-07-01") is False
+    row = a_contract(started_on="2024-01-01", ended_on="2024-06-30")
+    assert in_force_on(row, "2024-07-01") is False
 
 
 def test_the_contract_in_force_is_the_one_covering_the_day():
@@ -193,7 +195,8 @@ def test_a_second_contract_over_one_already_standing_is_refused():
 
 
 def test_a_contract_is_ended():
-    assert service().end(MANAGER, "ct-1", EndContract(ended_on="2025-09-30")).ended_on == "2025-09-30"
+    assert service() \
+        .end(MANAGER, "ct-1", EndContract(ended_on="2025-09-30")).ended_on == "2025-09-30"
 
 
 def test_a_contract_cannot_end_twice():

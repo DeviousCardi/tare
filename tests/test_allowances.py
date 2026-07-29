@@ -134,7 +134,8 @@ def test_a_second_allowance_over_one_already_standing_is_refused():
 
 
 def test_an_allowance_is_ended():
-    assert service().end(MANAGER, "al-1", EndAllowance(ends_on="2025-09-30")).ends_on == "2025-09-30"
+    assert service() \
+        .end(MANAGER, "al-1", EndAllowance(ends_on="2025-09-30")).ends_on == "2025-09-30"
 
 
 def test_an_allowance_cannot_end_twice():

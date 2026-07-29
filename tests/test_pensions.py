@@ -145,7 +145,8 @@ def test_a_code_the_employer_already_uses_is_refused():
 
 
 def test_a_scheme_is_closed():
-    assert service().close(MANAGER, "sc-1", CloseScheme(closed_on="2025-12-31")).closed_on == "2025-12-31"
+    assert service() \
+        .close(MANAGER, "sc-1", CloseScheme(closed_on="2025-12-31")).closed_on == "2025-12-31"
 
 
 def test_a_scheme_cannot_be_closed_twice():

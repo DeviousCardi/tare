@@ -121,7 +121,8 @@ def test_a_second_balance_from_one_period_is_refused():
 
 
 def test_a_balance_is_cleared():
-    assert service().clear(MANAGER, "bl-1", ClearBalance(cleared_on="2025-08-28")).cleared_on == "2025-08-28"
+    assert service() \
+        .clear(MANAGER, "bl-1", ClearBalance(cleared_on="2025-08-28")).cleared_on == "2025-08-28"
 
 
 def test_a_balance_cannot_be_cleared_twice():

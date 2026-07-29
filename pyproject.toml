@@ -25,13 +25,16 @@ dev = [
 include = ["tare*"]
 
 [tool.ruff]
-line-length = 92
+line-length = 100
 target-version = "py312"
 
 [tool.ruff.lint]
 # F catches what actually breaks: names that are not there, imports nobody
 # uses. The rest is taste and the reviews cover it.
-select = ["F"]
+# F catches what actually breaks: names that are not there, imports nobody
+# uses. E501 is here because the line length above was declared and never
+# enforced, and one import in the store had quietly reached 775 characters.
+select = ["F", "E501"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
