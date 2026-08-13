@@ -31,7 +31,8 @@ def continuous_from(rows: list[ServiceRecord], employee_id: str) -> str | None:
     if not theirs:
         return None
     started = theirs[-1].started_on
-    for earlier, later in zip(reversed(theirs[:-1]), reversed(theirs[1:])):
+    pairs = zip(reversed(theirs[:-1]), reversed(theirs[1:]), strict=True)
+    for earlier, later in pairs:
         if not joins_up(earlier, later):
             break
         started = earlier.started_on

@@ -34,7 +34,9 @@ target-version = "py312"
 # F catches what actually breaks: names that are not there, imports nobody
 # uses. E501 is here because the line length above was declared and never
 # enforced, and one import in the store had quietly reached 775 characters.
-select = ["F", "E501"]
+# B905 is here for one reason: a zip() that silently truncates when the two
+# sequences differ is the kind of defect a suite of this size will never catch.
+select = ["F", "E501", "B905"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
