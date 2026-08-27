@@ -12,6 +12,7 @@ Gross, less what is taken off, is net. The name is the arithmetic.
 pip install -e ".[dev]"
 uvicorn tare.main:app --reload      # http://localhost:8000
 pytest                             # the whole suite, green on any machine at any hour
+ruff check tare tests              # what CI lints on
 ```
 
 The image is what runs in anger. It builds in two stages so the build tools
@@ -22,8 +23,9 @@ docker build -t tare .
 docker run -p 8000:8000 tare
 ```
 
-CI runs the suite on 3.12 and 3.13 and then builds the image; nothing merges
-that has not been through both.
+CI lints, runs the suite on 3.12 and 3.13, sweeps for duplicate test names and
+for anything that reads the clock, then builds the image and curls it. Nothing
+merges that has not been through all of it.
 
 Everything is held in memory and reloaded from the bureau warehouse at start of
 day, so a restart loses nothing that matters.
@@ -96,7 +98,7 @@ Getting it out of the door — `mandates`, `payments`, `providers`,
 
 Answering to somebody else — `filings`, `submissions`, `statements`,
 `journals`, `ledger`, `engagements`, `determinations`, `reports`, `validation`,
-`audit`, `notices`, `archive`, `registry`.
+`audit`, `notices`, `archive`, `imports`, `registry`.
 
 Everything shared sits in `tare/common`: the row types, the in-memory store,
 money and date arithmetic, the operator, and the seed helpers the suite is
