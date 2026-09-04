@@ -83,7 +83,7 @@ What people are due — `elements`, `rates`, `scales`, `grades`, `premiums`,
 `allowances`, `reviews`, `awards`.
 
 What they actually did — `calendars`, `patterns`, `timesheets`, `absences`,
-`leave`, `entitlements`, `journeys`, `expenses`.
+`leave`, `entitlements`, `accruals`, `journeys`, `expenses`.
 
 What the Revenue publishes — `levycodes`, `bands`, `thresholds`, `reliefs`,
 `exemptions`, `holidays`.

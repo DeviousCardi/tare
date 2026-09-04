@@ -68,6 +68,16 @@ jobs:
         run: |
           ! grep -rnE 'TODO|FIXME|HACK' tare/ --exclude-dir=__pycache__
 
+      - name: The README names every area
+        run: |
+          missing=0
+          for d in tare/modules/*/; do
+            m=$(basename "$d")
+            [ "$m" = "__pycache__" ] && continue
+            grep -q "\`$m\`" README.md || { echo "not in README: $m"; missing=1; }
+          done
+          exit $missing
+
   image:
     name: image
     needs: [test, sweeps]
